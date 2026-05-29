@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TNN 2026 · The Neighborhoods Network</title>
+  <meta name="description" content="The cohort hub for TNN 2026. The retreat roadmap, the activities, the assets, and the artifacts — one place." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TNN 2026 · The Neighborhoods Network — Cohort Hub" />
+  <meta property="og:description" content="The retreat roadmap, the activities, the assets, and the artifacts." />
+  <meta property="og:image" content="og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <script>
+    (function() {
+      var stored = localStorage.getItem('tnn-hub-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+  <style>
+    /* ─────────── HOME-PAGE-SPECIFIC ─────────── */
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      text-transform: uppercase;
+      line-height: 0.98;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .accent { color: var(--amber); display: block; }
+    .hero .deck {
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-journey {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .hero-journey-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .hero-axis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .hero-axis-step {
+      padding: 0 0.5rem;
+      text-align: left;
+      border-left: 2px solid var(--phase-color);
+      padding-left: 0.85rem;
+    }
+    .hero-axis-step[data-phase="1"] { --phase-color: var(--p1); }
+    .hero-axis-step[data-phase="2"] { --phase-color: var(--p2); }
+    .hero-axis-step[data-phase="3"] { --phase-color: var(--p3); }
+    .hero-axis-step[data-phase="4"] { --phase-color: var(--p4); }
+    .hero-axis-step .phase {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.66rem;
+      color: var(--phase-color);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+    .hero-axis-step .h {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+    .hero-axis-step .desc {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+    .hero-axis-gradient {
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--p1) 0%, var(--p2) 33%, var(--p3) 66%, var(--p4) 100%);
+      margin-top: 1.25rem;
+    }
+    .hero-axis-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 720px) {
+      .hero-axis { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    }
+
+    /* ROADMAP */
+    .roadmap {
+      padding: 1rem 0;
+    }
+    .phase-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .phase-card {
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--phase-color);
+      border-radius: 0 0 8px 8px;
+    }
+    .phase-card[data-phase="1"] { --phase-color: var(--p1); }
+    .phase-card[data-phase="2"] { --phase-color: var(--p2); }
+    .phase-card[data-phase="3"] { --phase-color: var(--p3); }
+    .phase-card[data-phase="4"] { --phase-color: var(--p4); }
+    .phase-card .ph {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      color: var(--phase-color);
+      margin-bottom: 0.25rem;
+    }
+    .phase-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    .phase-card .desc {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .act-card {
+      padding: 1.25rem 1.35rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+    .act-card:hover {
+      border-color: var(--node-color, var(--line2));
+      transform: translateY(-2px);
+    }
+    .act-card[data-c="1"] { --node-color: var(--c1); }
+    .act-card[data-c="2"] { --node-color: var(--c2); }
+    .act-card[data-c="3"] { --node-color: var(--c3); }
+    .act-card[data-c="4"] { --node-color: var(--c4); }
+    .act-card[data-c="5"] { --node-color: var(--c5); }
+    .act-card[data-c="6"] { --node-color: var(--c6); }
+    .act-card[data-c="7"] { --node-color: var(--c7); }
+    .act-card[data-c="8"] { --node-color: var(--c8); }
+    .act-card .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+    .act-card .num {
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      background: var(--node-color);
+      color: var(--page);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .act-card .num { color: var(--ink); }
+    .act-card .q {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .act-card .adds {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+    .act-card .adds strong { color: var(--ink-soft); font-weight: 500; }
+
+    /* WHAT'S HERE */
+    .whats-here {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0 0;
+    }
+    .wh-item {
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .wh-item h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .wh-item .lead {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+    .wh-item .accent-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+    .wh-item:nth-child(1) .accent-dot { background: var(--c4); }
+    .wh-item:nth-child(2) .accent-dot { background: var(--c6); }
+    .wh-item:nth-child(3) .accent-dot { background: var(--teal); }
+
+    /* LATEST SPOTLIGHT */
+    .spotlight {
+      padding: 2.5rem 2.5rem;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--amber);
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0 0;
+    }
+    .spotlight .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .spotlight h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .spotlight .body {
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+
+    /* CONVENERS */
+    .conveners {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .convener {
+      padding: 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .convener .role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.3rem;
+    }
+    .convener .name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .convener .desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a href="index.html" class="brand-mark" aria-label="TNN 2026 home">
+        <span class="mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </span>
+        <span class="brand-text">TNN 2026<span class="sub">Cohort Hub</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Roadmap</a></li>
+        <li><a href="activities/01-neighborhood.html">Activities</a></li>
+        <li><a href="#conveners">Conveners</a></li>
+      </ul>
+      <div class="theme-toggle" role="group" aria-label="Color theme">
+        <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          Light
+        </button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Dark
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="wrap hero">
+    <div class="eyebrow">A working hub · The Neighborhoods Network 2026</div>
+    <h1>From a single question<br><span class="accent">to a visible ecosystem</span></h1>
+    <p class="deck">
+      The retreat is built as a network that grows. Each activity is a node.
+      Every node keeps everything before it, then adds one new layer of understanding.
+      This is the place to find what each step produced.
+    </p>
+
+    <div class="hero-journey">
+      <div class="hero-journey-label">The journey · local & lived → strategic</div>
+      <div class="hero-axis">
+        <div class="hero-axis-step" data-phase="1">
+          <div class="phase">Phase 1 · Defining</div>
+          <div class="h">Starts with place</div>
+          <div class="desc">What we know, what thriving means, in the language of lived experience.</div>
+        </div>
+        <div class="hero-axis-step" data-phase="2">
+          <div class="phase">Phase 2 · Systems</div>
+          <div class="h">Expands understanding</div>
+          <div class="desc">What sustains thriving, and what undermines it.</div>
+        </div>
+        <div class="hero-axis-step" data-phase="3">
+          <div class="phase">Phase 3 · Ecosystem</div>
+          <div class="h">Makes relationships visible</div>
+          <div class="desc">The actors, the bridges, the gaps, and who touches what.</div>
+        </div>
+        <div class="hero-axis-step" data-phase="4">
+          <div class="phase">Phase 4 · Integration</div>
+          <div class="h">Identifies possibility</div>
+          <div class="desc">Leverage points, recurring patterns, and what carries forward.</div>
+        </div>
+      </div>
+      <div class="hero-axis-gradient" aria-hidden="true"></div>
+      <div class="hero-axis-labels">
+        <span>Local & lived</span>
+        <span>More systemic</span>
+        <span>More relational</span>
+        <span>More strategic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="wrap roadmap" id="roadmap">
+    <div class="section-head">
+      <div class="kicker">The roadmap</div>
+      <h2>Eight activities, four phases</h2>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="phase-strip" style="grid-template-columns: 1fr;">
+      <div class="phase-card" data-phase="1">
+        <div class="ph">Phase 1 · Defining flourishing</div>
+        <h3>Abstract language → concrete, shared meaning</h3>
+        <div class="desc">We start with the words. What we mean by "neighborhood," what we mean by "thriving." The texture of place and the substance of what we are trying to support.</div>
+      </div>
+    </div>
+    <div class="activity-grid" style="margin-bottom: 2.5rem;">
+      <a class="act-card" data-c="1" href="activities/01-neighborhood.html">
+        <div class="top">
+          <div class="num">1</div>
+          <span class="status complete"><span class="dot"></span>Complete</span>
+        </div>
+        <div class="q">What is your "neighborhood"?</div>
+        <div class="adds"><strong>Builds:</strong> a shared sense of the place we are trying to help flourish.</div>
+      </a>
+      <a class="act-card" data-c="2" href="activities/02-care.html">
+        <div class="top">
+          <div class="num">2</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">What do you really care about?</div>
+        <div class="adds"><strong>Adds:</strong> the concrete dimensions of what thriving actually means.</div>
+      </a>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-strip" style="grid-template-columns: 1fr;">
+      <div class="phase-card" data-phase="2">
+        <div class="ph">Phase 2 · Understanding systems</div>
+        <h3>Conditions → pressures → systems dynamics</h3>
+        <div class="desc">What keeps thriving alive over time, and what undermines it. The conditions, dependencies, drivers, and reinforcing pressures that shape the system.</div>
+      </div>
+    </div>
+    <div class="activity-grid" style="margin-bottom: 2.5rem;">
+      <a class="act-card" data-c="3" href="activities/03-alive.html">
+        <div class="top">
+          <div class="num">3</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">What keeps those things alive?</div>
+        <div class="adds"><strong>Adds:</strong> the conditions and dependencies that sustain thriving over time.</div>
+      </a>
+      <a class="act-card" data-c="4" href="activities/04-undermines.html">
+        <div class="top">
+          <div class="num">4</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">What undermines them?</div>
+        <div class="adds"><strong>Adds:</strong> the barriers, drivers, and reinforcing pressures that weaken conditions.</div>
+      </a>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-strip" style="grid-template-columns: 1fr;">
+      <div class="phase-card" data-phase="3">
+        <div class="ph">Phase 3 · Revealing the ecosystem</div>
+        <h3>Invisible actors → visible network structure</h3>
+        <div class="desc">The actors, bridges, gaps, and capacities made visible. How sectors and people actually influence the conditions of thriving.</div>
+      </div>
+    </div>
+    <div class="activity-grid" style="margin-bottom: 2.5rem;">
+      <a class="act-card" data-c="5" href="activities/05-ecosystem.html">
+        <div class="top">
+          <div class="num">5</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">Who is in the ecosystem?</div>
+        <div class="adds"><strong>Adds:</strong> the actors, bridges, gaps, and missing capacities, made visible.</div>
+      </a>
+      <a class="act-card" data-c="6" href="activities/06-touches.html">
+        <div class="top">
+          <div class="num">6</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">Who touches the conditions?</div>
+        <div class="adds"><strong>Adds:</strong> how actors and sectors actually influence each condition of thriving.</div>
+      </a>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase-strip" style="grid-template-columns: 1fr;">
+      <div class="phase-card" data-phase="4">
+        <div class="ph">Phase 4 · Integration and orientation</div>
+        <h3>Complexity → orientation and possibility</h3>
+        <div class="desc">The leverage points, recurring patterns, and openings worth continuing. What we are leaving with, and how the work moves from seeing the system to acting within it.</div>
+      </div>
+    </div>
+    <div class="activity-grid" style="margin-bottom: 1rem;">
+      <a class="act-card" data-c="7" href="activities/07-leverage.html">
+        <div class="top">
+          <div class="num">7</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">Where are the leverage points?</div>
+        <div class="adds"><strong>Adds:</strong> the recurring patterns, adjacencies, and openings worth continuing.</div>
+      </a>
+      <a class="act-card" data-c="8" href="activities/08-leaving.html">
+        <div class="top">
+          <div class="num">8</div>
+          <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        </div>
+        <div class="q">What are we leaving with?</div>
+        <div class="adds"><strong>Adds:</strong> shared orientation, relational closure, and a sense of what continues.</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- WHAT'S HERE -->
+  <section class="wrap">
+    <div class="section-head">
+      <div class="kicker">What's here</div>
+      <h2>Three things on every activity page</h2>
+    </div>
+    <div class="whats-here">
+      <div class="wh-item">
+        <h3><span class="accent-dot"></span>Assets</h3>
+        <p class="lead">The polished visual outputs of each activity — diagrams, summaries, interactive pages. Embedded inline where they work, downloadable as PDF or PNG where useful.</p>
+      </div>
+      <div class="wh-item">
+        <h3><span class="accent-dot"></span>Artifacts</h3>
+        <p class="lead">The raw and working materials. Synthesis memos, breakout notes, sticky CSVs, source documents. The evidence layer behind the assets.</p>
+      </div>
+      <div class="wh-item">
+        <h3><span class="accent-dot"></span>Status</h3>
+        <p class="lead">Where each activity sits — upcoming, in progress, or complete. What it produced, what comes next, what carries forward.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT: LATEST ACTIVITY -->
+  <section class="wrap">
+    <div class="section-head">
+      <div class="kicker">Most recent</div>
+      <h2>What just landed</h2>
+    </div>
+    <div class="spotlight">
+      <div class="label">Activity 1 · Phase 1 · Complete</div>
+      <h3>What is your "neighborhood"?</h3>
+      <p class="body">The first activity asked the cohort to define neighborhood in their own words. Eighteen participants generated 141 stickies, a round-robin of definitions, and four breakout group readings. The synthesis turned that material into a working framework: seven components that make a neighborhood thrive, each with three key attributes and indicators that distinguish presence from grounding. The framework is live as an interactive page, with the underlying synthesis, summary, and raw artifacts all available.</p>
+      <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+        <a class="btn" href="activities/01-neighborhood.html">Open Activity 1 →</a>
+        <a class="btn btn-outline" href="assets/activity-01/seven-components-visual.html">View the seven-components framework</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVENERS -->
+  <section class="wrap" id="conveners">
+    <div class="section-head">
+      <div class="kicker">Who runs this</div>
+      <h2>Conveners</h2>
+    </div>
+    <div class="conveners">
+      <div class="convener">
+        <div class="role">Co-founder, C4C</div>
+        <div class="name">George Schuler</div>
+        <p class="desc">Three decades at The Nature Conservancy and the CEO Water Mandate. Builds the framework, runs the synthesis, holds the systems lens.</p>
+      </div>
+      <div class="convener">
+        <div class="role">Co-founder, C4C</div>
+        <div class="name">Sarah Whateley</div>
+        <p class="desc">Holds the relational and practice lens. Brings the convening rhythm and the trust the cohort runs on.</p>
+      </div>
+      <div class="convener">
+        <div class="role">Questions or corrections</div>
+        <div class="name">Get in touch</div>
+        <p class="desc">This hub is a working document. If anything needs correcting, or if you want something added, write to <a href="mailto:george@connectingforchangellc.com">george@connectingforchangellc.com</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
+      </div>
+      <div class="meta">
+        Cohort hub · working framework<br>
+        Last updated May 29, 2026
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared/theme.js"></script>
+</body>
+</html>
