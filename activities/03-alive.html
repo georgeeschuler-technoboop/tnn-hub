@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity 3 · What keeps those things alive? — TNN 2026</title>
+  <meta name="description" content="Activity 3 of the TNN 2026 retreat roadmap. What keeps those things alive? (Upcoming.)" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Activity 3 · What keeps those things alive? — TNN 2026" />
+  <meta property="og:image" content="../og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,300;1,400&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../shared/styles.css" />
+  <script>
+    (function() {
+      var stored = localStorage.getItem('tnn-hub-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+  <style>
+    .act-header { padding: 3rem 0 2.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2.5rem; }
+    .act-header .meta-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .act-phase-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--c3); }
+    .act-phase-tag .num { width: 24px; height: 24px; border-radius: 5px; background: var(--c3); color: var(--page); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; }
+    [data-theme="dark"] .act-phase-tag .num { color: var(--ink); }
+    .act-date { font-size: 0.78rem; color: var(--ink-muted); letter-spacing: 0.04em; }
+    .act-header h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.0; color: var(--ink); margin-bottom: 1rem; }
+    .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 700px; line-height: 1.55; }
+    .act-header .adds strong { font-style: normal; font-weight: 500; color: var(--c3); }
+
+    .upcoming-panel {
+      padding: 3rem 2.5rem;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      text-align: center;
+      max-width: 760px;
+      margin: 2rem auto 4rem;
+    }
+    .upcoming-panel .icon-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--c3);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--c3);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+    }
+    .upcoming-panel h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .upcoming-panel p {
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .upcoming-panel p:last-child { margin-bottom: 0; }
+    .upcoming-panel strong { color: var(--ink); font-weight: 500; }
+
+    .seq-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 4rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
+    .seq-nav a { padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); transition: border-color 180ms ease, transform 180ms ease; }
+    .seq-nav a:hover { border-color: var(--line2); transform: translateY(-1px); }
+    .seq-nav a.prev { text-align: left; }
+    .seq-nav a.next { text-align: right; }
+    .seq-nav .dir { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--ink-muted); margin-bottom: 0.3rem; }
+    .seq-nav .lbl { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.05rem; color: var(--ink); line-height: 1.1; }
+    .seq-nav a.disabled { opacity: 0.4; pointer-events: none; }
+    @media (max-width: 600px) { .seq-nav { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a href="../index.html" class="brand-mark" aria-label="TNN 2026 home">
+        <span class="mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </span>
+        <span class="brand-text">TNN 2026<span class="sub">Cohort Hub</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Roadmap</a></li>
+        <li><a href="01-neighborhood.html" class="active">Activities</a></li>
+        <li><a href="../index.html#conveners">Conveners</a></li>
+      </ul>
+      <div class="theme-toggle" role="group" aria-label="Color theme">
+        <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          Light
+        </button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Dark
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="crumb">
+    <div class="crumb-inner">
+        <a class="crumb-back" href="../index.html">← Roadmap</a>
+        <div class="crumb-phases">
+        <div class="crumb-phase" data-phase="1">
+          <div class="crumb-phase-label">Phase 1 · Defining</div>
+          <div class="crumb-nodes">
+            <a class="crumb-node" data-c="1" data-state="complete" href="01-neighborhood.html">
+              <span class="dot">1</span>
+            </a>
+            <a class="crumb-node" data-c="2" data-state="upcoming" href="02-care.html">
+              <span class="dot">2</span>
+            </a>
+          </div>
+        </div>
+        <div class="crumb-phase active" data-phase="2">
+          <div class="crumb-phase-label">Phase 2 · Systems</div>
+          <div class="crumb-nodes">
+            <a class="crumb-node" data-c="3" data-state="current" href="03-alive.html">
+              <span class="dot">3</span><span class="label">You are here</span>
+            </a>
+            <a class="crumb-node" data-c="4" data-state="upcoming" href="04-undermines.html">
+              <span class="dot">4</span>
+            </a>
+          </div>
+        </div>
+        <div class="crumb-phase" data-phase="3">
+          <div class="crumb-phase-label">Phase 3 · Ecosystem</div>
+          <div class="crumb-nodes">
+            <a class="crumb-node" data-c="5" data-state="upcoming" href="05-ecosystem.html">
+              <span class="dot">5</span>
+            </a>
+            <a class="crumb-node" data-c="6" data-state="upcoming" href="06-touches.html">
+              <span class="dot">6</span>
+            </a>
+          </div>
+        </div>
+        <div class="crumb-phase" data-phase="4">
+          <div class="crumb-phase-label">Phase 4 · Integration</div>
+          <div class="crumb-nodes">
+            <a class="crumb-node" data-c="7" data-state="upcoming" href="07-leverage.html">
+              <span class="dot">7</span>
+            </a>
+            <a class="crumb-node" data-c="8" data-state="upcoming" href="08-leaving.html">
+              <span class="dot">8</span>
+            </a>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <header class="act-header">
+      <div class="meta-row">
+        <span class="act-phase-tag"><span class="num">3</span>Activity 3 · Phase 2 · Understanding systems</span>
+        <span class="status upcoming"><span class="dot"></span>Upcoming</span>
+        <span class="act-date">Scheduled for the retreat</span>
+      </div>
+      <h1>What keeps those things alive?</h1>
+      <p class="adds"><strong>Adds:</strong> the conditions and dependencies that sustain thriving over time.</p>
+    </header>
+
+    <div class="upcoming-panel">
+      <div class="icon-circle">3</div>
+      <h3>This activity hasn't happened yet</h3>
+      <p>Activity 3 is scheduled for the retreat. When the work is complete and the synthesis is ready, this page will fill in with the assets, artifacts, and a narrative of what came out of the cohort's discussion.</p>
+      <p>Until then, the question and what it's expected to add are above. Everything from earlier activities carries forward into this one.</p>
+    </div>
+
+    <nav class="seq-nav" aria-label="Activity navigation">
+      <a class="prev" href="02-care.html">
+        <div class="dir">← Previous</div>
+        <div class="lbl">Activity 2 · What do you really care about?</div>
+      </a>
+      <a class="next" href="04-undermines.html">
+        <div class="dir">Next →</div>
+        <div class="lbl">Activity 4 · What undermines them?</div>
+      </a>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
+      </div>
+      <div class="meta">
+        Activity 3 · upcoming<br>
+        Last updated May 29, 2026
+      </div>
+    </div>
+  </footer>
+
+  <script src="../shared/theme.js"></script>
+</body>
+</html>
