@@ -557,12 +557,15 @@
       <div class="ch-canvas">
         <svg class="ch-svg" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg" aria-label="Roadmap journey visualization">
           <defs>
-            <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="spineGrad" x1="80" y1="0" x2="1060" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%"   stop-color="var(--c1)"/>
-              <stop offset="22%"  stop-color="var(--c3)"/>
-              <stop offset="55%"  stop-color="var(--c5)"/>
-              <stop offset="80%"  stop-color="var(--c6)"/>
-              <stop offset="100%" stop-color="var(--c4)"/>
+              <stop offset="14%"  stop-color="var(--c2)"/>
+              <stop offset="28%"  stop-color="var(--c3)"/>
+              <stop offset="42%"  stop-color="var(--c4)"/>
+              <stop offset="57%"  stop-color="var(--c5)"/>
+              <stop offset="71%"  stop-color="var(--c6)"/>
+              <stop offset="85%"  stop-color="var(--c7)"/>
+              <stop offset="100%" stop-color="var(--c8)"/>
             </linearGradient>
             <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="3" result="b"/>
@@ -570,157 +573,123 @@
             </filter>
           </defs>
 
-          <!-- Phase labels above -->
+          <!-- Phase headers — one per pair of activities -->
           <g class="ch-phase-labels">
-            <text class="ch-phase-label" x="100" y="34" fill="var(--c1)">Define flourishing</text>
-            <line x1="40" y1="44" x2="240" y2="44" stroke="var(--c1)" stroke-width="1" opacity="0.4"/>
+            <text class="ch-phase-label" x="150" y="34" fill="var(--c1)" text-anchor="middle">Define flourishing</text>
+            <line x1="50"  y1="44" x2="250"  y2="44" stroke="var(--c1)" stroke-width="1" opacity="0.4"/>
 
-            <text class="ch-phase-label" x="380" y="34" fill="var(--c3)">Understand systems</text>
-            <line x1="320" y1="44" x2="520" y2="44" stroke="var(--c3)" stroke-width="1" opacity="0.4"/>
+            <text class="ch-phase-label" x="430" y="34" fill="var(--c3)" text-anchor="middle">Understand systems</text>
+            <line x1="330" y1="44" x2="530"  y2="44" stroke="var(--c3)" stroke-width="1" opacity="0.4"/>
 
-            <text class="ch-phase-label" x="660" y="34" fill="var(--c5)">Reveal the ecosystem</text>
-            <line x1="600" y1="44" x2="800" y2="44" stroke="var(--c5)" stroke-width="1" opacity="0.4"/>
+            <text class="ch-phase-label" x="710" y="34" fill="var(--c5)" text-anchor="middle">Reveal the ecosystem</text>
+            <line x1="610" y1="44" x2="810"  y2="44" stroke="var(--c5)" stroke-width="1" opacity="0.4"/>
 
-            <text class="ch-phase-label" x="940" y="34" fill="var(--c7)">Integrate &amp; orient</text>
-            <line x1="880" y1="44" x2="1080" y2="44" stroke="var(--c7)" stroke-width="1" opacity="0.4"/>
+            <text class="ch-phase-label" x="990" y="34" fill="var(--c7)" text-anchor="middle">Integrate &amp; orient</text>
+            <line x1="890" y1="44" x2="1090" y2="44" stroke="var(--c7)" stroke-width="1" opacity="0.4"/>
           </g>
 
-          <!-- Gradient spine arcing down through nodes 7 and 8 -->
-          <path d="M70 140 H840 Q920 140 960 180 Q1000 220 1040 260"
-                fill="none" stroke="url(#spineGrad)" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+          <!-- Spine — straight gradient line through all eight nodes -->
+          <line x1="80" y1="180" x2="1060" y2="180" stroke="url(#spineGrad)" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
 
-          <!-- Constellation/ecosystem cluster (positioned to receive the arc) -->
-          <g class="constellation" transform="translate(990, 40)">
-            <g>
-              <line class="eco-line" x1="20" y1="35" x2="55" y2="10"/>
-              <line class="eco-line" x1="55" y1="10" x2="105" y2="22"/>
-              <line class="eco-line" x1="105" y1="22" x2="150" y2="5"/>
-              <line class="eco-line" x1="150" y1="5" x2="195" y2="35"/>
-              <line class="eco-line" x1="20" y1="35" x2="45" y2="68"/>
-              <line class="eco-line" x1="55" y1="10" x2="75" y2="55"/>
-              <line class="eco-line" x1="105" y1="22" x2="130" y2="60"/>
-              <line class="eco-line" x1="195" y1="35" x2="170" y2="75"/>
-            </g>
-            <g>
-              <circle cx="20"  cy="35" r="2.5" class="eco-dot-3"/>
-              <circle cx="55"  cy="10" r="3"   class="eco-dot-4"/>
-              <circle cx="105" cy="22" r="2.8" class="eco-dot-5"/>
-              <circle cx="150" cy="5"  r="3"   class="eco-dot-6"/>
-              <circle cx="195" cy="35" r="2.5" class="eco-dot-1"/>
-              <circle cx="45"  cy="68" r="2"   class="eco-dot-2"/>
-              <circle cx="75"  cy="55" r="2.2" class="eco-dot-4"/>
-              <circle cx="130" cy="60" r="2"   class="eco-dot-3"/>
-              <circle cx="170" cy="75" r="2.2" class="eco-dot-6"/>
-            </g>
-          </g>
-
-          <!-- Activity nodes -->
-          <!-- Phase 1: nodes 1, 2 -->
-          <g transform="translate(80, 140)">
+          <!-- Activity nodes — eight equal, hollow rings -->
+          <g transform="translate(80, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c1)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c1)" y="1">1</text>
           </g>
-          <g transform="translate(230, 140)">
+          <g transform="translate(220, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c2)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c2)" y="1">2</text>
           </g>
-
-          <!-- Phase 2: nodes 3, 4 -->
-          <g transform="translate(390, 140)">
+          <g transform="translate(360, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c3)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c3)" y="1">3</text>
           </g>
-          <g transform="translate(540, 140)">
+          <g transform="translate(500, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c4)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c4)" y="1">4</text>
           </g>
-
-          <!-- Phase 3: nodes 5, 6 -->
-          <g transform="translate(680, 140)">
+          <g transform="translate(640, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c5)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c5)" y="1">5</text>
           </g>
-          <g transform="translate(830, 140)">
+          <g transform="translate(780, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c6)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c6)" y="1">6</text>
           </g>
-
-          <!-- Phase 4: nodes 7, 8 placed along the arc descent -->
-          <g transform="translate(960, 180)">
+          <g transform="translate(920, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c7)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c7)" y="1">7</text>
           </g>
-          <g transform="translate(1040, 260)">
+          <g transform="translate(1060, 180)">
             <circle class="ch-node-disc" r="22" fill="var(--card)" stroke="var(--c8)" filter="url(#nodeGlow)"/>
             <text class="ch-node-num" font-size="18" fill="var(--c8)" y="1">8</text>
           </g>
 
           <!-- Captions below each node -->
-          <!-- 1 -->
-          <g transform="translate(80, 175)">
+          <g transform="translate(80, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c1)" text-anchor="middle">Activity 1</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">What is your</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">neighborhood?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c1)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">shared sense of place</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c1)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">shared sense of place</text>
           </g>
-          <!-- 2 -->
-          <g transform="translate(230, 175)">
+          <g transform="translate(220, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c2)" text-anchor="middle">Activity 2</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">What do you</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">really care about?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c2)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">meaning of thriving</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c2)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">meaning of thriving</text>
           </g>
-          <!-- 3 -->
-          <g transform="translate(390, 175)">
+          <g transform="translate(360, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c3)" text-anchor="middle">Activity 3</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">What keeps those</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">things alive?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c3)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">conditions of flourishing</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c3)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">conditions of flourishing</text>
           </g>
-          <!-- 4 -->
-          <g transform="translate(540, 175)">
+          <g transform="translate(500, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c4)" text-anchor="middle">Activity 4</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">What undermines</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">them?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c4)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">pressures and dynamics</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c4)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">pressures and dynamics</text>
           </g>
-          <!-- 5 -->
-          <g transform="translate(680, 175)">
+          <g transform="translate(640, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c5)" text-anchor="middle">Activity 5</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">Who is in the</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">ecosystem?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c5)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">visible actors</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c5)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">visible actors</text>
           </g>
-          <!-- 6 -->
-          <g transform="translate(830, 175)">
+          <g transform="translate(780, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c6)" text-anchor="middle">Activity 6</text>
             <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">Who touches the</text>
             <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">conditions?</text>
-            <text class="ch-cap-adds-label" x="0" y="56" fill="var(--c6)" text-anchor="middle">Adds:</text>
-            <text class="ch-cap-adds"       x="0" y="72" text-anchor="middle">influence pathways</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c6)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">influence pathways</text>
           </g>
-          <!-- 8 — caption below node 8 (Activity 7 intentionally has no caption to keep the hero clean) -->
-          <g transform="translate(1040, 295)">
+          <g transform="translate(920, 215)">
+            <text class="ch-cap-tag" x="0" y="0"  fill="var(--c7)" text-anchor="middle">Activity 7</text>
+            <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">Where are the</text>
+            <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">leverage points?</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c7)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">possibility &amp; openings</text>
+          </g>
+          <g transform="translate(1060, 215)">
             <text class="ch-cap-tag" x="0" y="0"  fill="var(--c8)" text-anchor="middle">Activity 8</text>
-            <text class="ch-cap-q"   x="0" y="16" text-anchor="middle">What are we</text>
-            <text class="ch-cap-q"   x="0" y="32" text-anchor="middle">leaving with?</text>
+            <text class="ch-cap-q"   x="0" y="18" text-anchor="middle">What are we</text>
+            <text class="ch-cap-q"   x="0" y="34" text-anchor="middle">leaving with?</text>
+            <text class="ch-cap-adds-label" x="0" y="58" fill="var(--c8)" text-anchor="middle">Adds:</text>
+            <text class="ch-cap-adds"       x="0" y="74" text-anchor="middle">orientation &amp; continuation</text>
           </g>
 
-          <!-- Bottom progression axis -->
-          <g transform="translate(0, 420)">
-            <text class="ch-axis-label" x="60"   y="0" fill="var(--c1)">Local &amp; lived</text>
-            <text class="ch-axis-label" x="380"  y="0" fill="var(--c3)" text-anchor="middle">More systemic</text>
-            <text class="ch-axis-label" x="700"  y="0" fill="var(--c5)" text-anchor="middle">More relational</text>
-            <text class="ch-axis-label" x="1080" y="0" fill="var(--c7)" text-anchor="end">More strategic →</text>
-            <line x1="60"  y1="-12" x2="320"  y2="-12" stroke="var(--c1)" stroke-width="1" opacity="0.5"/>
-            <line x1="380" y1="-12" x2="640"  y2="-12" stroke="var(--c3)" stroke-width="1" opacity="0.5"/>
-            <line x1="700" y1="-12" x2="960"  y2="-12" stroke="var(--c5)" stroke-width="1" opacity="0.5"/>
-            <line x1="1010" y1="-12" x2="1080" y2="-12" stroke="var(--c7)" stroke-width="1" opacity="0.5"/>
+          <!-- Continuous progression continuum at the bottom -->
+          <g transform="translate(0, 380)">
+            <rect x="80" y="0" width="980" height="6" rx="3" fill="url(#spineGrad)" opacity="0.85"/>
+            <text class="ch-axis-label" x="150"  y="28" fill="var(--c1)" text-anchor="middle">Local &amp; lived</text>
+            <text class="ch-axis-label" x="430"  y="28" fill="var(--c3)" text-anchor="middle">More systemic</text>
+            <text class="ch-axis-label" x="710"  y="28" fill="var(--c5)" text-anchor="middle">More relational</text>
+            <text class="ch-axis-label" x="990"  y="28" fill="var(--c7)" text-anchor="middle">More strategic</text>
           </g>
         </svg>
       </div>
