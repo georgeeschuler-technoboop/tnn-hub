@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TNN Network Survey — What the Network Shows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --indigo:    #2825BE;
+  --indigo-lt: #4a47d6;
+  --amber:     #EB9001;
+  --amber-lt:  #f5a830;
+  --teal:      #0C7A7A;
+  --teal-lt:   #0fa8a8;
+  --terra:     #CF4C38;
+  --terra-lt:  #e05a45;
+  --green:     #2e9e5b;
+  --ink:       #080818;
+  --ink-2:     #0f0e2e;
+  --ink-3:     #13123a;
+  --surface:   #ffffff;
+  --surface-2: #F5F7F6;
+  --border:    #e2e5e3;
+  --border-dk: rgba(255,255,255,0.09);
+  --text:      #111827;
+  --text-2:    #4b5563;
+  --text-3:    #9ca3af;
+  --max-w:     1120px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+a { color: var(--indigo); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--indigo-lt); }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+.section { padding: 88px 32px; }
+.section-sm { padding: 56px 32px; }
+.dark-section { background: var(--ink); color: white; }
+
+h1, h2, h3, h4 { font-family: 'Barlow Condensed', sans-serif; line-height: 1.1; }
+.display-xl { font-size: clamp(48px, 6.4vw, 84px); font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+.display-lg { font-size: clamp(34px, 4.6vw, 56px); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
+.display-md { font-size: clamp(26px, 3.2vw, 38px); font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; }
+
+.lead { font-size: clamp(16px, 1.8vw, 19px); line-height: 1.7; color: var(--text-2); max-width: 660px; }
+.lead-light { color: rgba(255,255,255,0.62); }
+
+.eyebrow { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
+.eyebrow-teal  { color: var(--teal-lt); }
+.eyebrow-terra { color: var(--terra-lt); }
+.eyebrow-amber { color: var(--amber); }
+.eyebrow-green { color: var(--green); }
+.eyebrow-ink   { color: var(--text-2); }
+.dark-section .eyebrow-ink { color: var(--text-3); }
+
+.kicker { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.04em; }
+
+.prose p { margin-bottom: 16px; max-width: 700px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { padding-left: 22px; margin-bottom: 16px; max-width: 700px; }
+.prose ul li { margin-bottom: 8px; }
+.prose strong { color: var(--text); }
+.dark-section .prose strong, .dark-section .prose p { color: rgba(255,255,255,0.82); }
+
+.divider { height: 1px; background: var(--border); margin: 0; }
+.dark-section + .divider, .divider-dk { background: var(--border-dk); }
+
+/* ── Hero ── */
+.hero { position: relative; background: var(--ink); color: #fff; padding: 112px 32px 88px; overflow: hidden; }
+.hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 2; }
+.hero h1 { color: #fff; margin: 12px 0 22px; max-width: 880px; }
+.hero .lead { color: rgba(255,255,255,0.7); max-width: 620px; }
+.hero-meta { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--border-dk); display: flex; gap: 28px; flex-wrap: wrap; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+#hero-canvas { position: absolute; inset: 0; pointer-events: none; opacity: 0.38; z-index: 1; }
+
+/* ── Section openers ── */
+.section-head { display: grid; grid-template-columns: 88px 1fr; gap: 24px; margin-bottom: 36px; }
+.section-num { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--text-3); padding-top: 14px; border-top: 2px solid var(--indigo); }
+.dark-section .section-num { color: rgba(255,255,255,0.4); border-top-color: var(--indigo-lt); }
+.section-head h2 { color: var(--text); margin-bottom: 10px; }
+.dark-section .section-head h2 { color: #fff; }
+
+/* ── Stat grid ── */
+.stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin: 32px 0; background: var(--border); }
+.dark-section .stat-grid { background: var(--border-dk); }
+.stat-cell { background: var(--surface); padding: 28px 22px; }
+.dark-section .stat-cell { background: var(--ink-2); }
+.stat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 46px; font-weight: 900; line-height: 1; color: var(--indigo); }
+.dark-section .stat-val { color: var(--indigo-lt); }
+.stat-val.amber { color: var(--amber); }
+.stat-val.teal  { color: var(--teal); }
+.dark-section .stat-val.teal { color: var(--teal-lt); }
+.stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
+.dark-section .stat-label { color: rgba(255,255,255,0.35); }
+.stat-sub { font-size: 12.5px; color: var(--text-2); margin-top: 6px; line-height: 1.4; }
+.dark-section .stat-sub { color: rgba(255,255,255,0.45); }
+
+/* ── Two col ── */
+.two-col { display: grid; grid-template-columns: 1.25fr 1fr; gap: 44px; align-items: start; margin-top: 8px; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 24px; }
+
+/* ── Quality cells ── */
+.quality-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin: 28px 0; background: var(--border); }
+.quality-cell { background: var(--surface); padding: 22px; display: flex; gap: 18px; align-items: flex-start; }
+.q-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 38px; line-height: 1; min-width: 70px; }
+.q-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.q-sub { font-size: 13px; color: var(--text-2); margin-top: 4px; line-height: 1.5; }
+
+/* ── Depth bar ── */
+.depth-bar { display: flex; height: 38px; gap: 2px; margin: 24px 0 10px; }
+.depth-seg { display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: white; font-weight: 500; }
+.depth-legend { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-2); margin-top: 4px; }
+.dl-item { display: flex; align-items: center; gap: 6px; }
+.dl-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── Network panel ── */
+.network-panel { background: var(--ink); border-radius: 6px; padding: 4px; margin: 28px 0; }
+
+/* ── Rule cards / action cards ── */
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+.rule-card { background: var(--surface-2); border-left: 3px solid var(--indigo); padding: 18px 22px; border-radius: 0 4px 4px 0; }
+.rule-card.amber  { border-left-color: var(--amber); }
+.rule-card.teal   { border-left-color: var(--teal); }
+.rule-card.terra  { border-left-color: var(--terra); }
+.rule-card.green  { border-left-color: var(--green); }
+.rule-card h4 { font-family: 'IBM Plex Sans', sans-serif; font-size: 14.5px; font-weight: 700; text-transform: none; letter-spacing: 0; margin-bottom: 6px; color: var(--text); }
+.rule-card p { font-size: 13.5px; color: var(--text-2); margin: 0; line-height: 1.55; }
+
+/* ── People chips ── */
+.people-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.people-chip { background: var(--surface-2); border: 1px solid var(--border); padding: 7px 14px; font-size: 13.5px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.people-chip .n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--indigo); }
+.dark-section .people-chip { background: var(--ink-2); border-color: var(--border-dk); color: rgba(255,255,255,0.85); }
+.dark-section .people-chip .n { color: var(--indigo-lt); }
+
+/* ── Cluster cards ── */
+.cluster-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2px; margin: 24px 0; background: var(--border); }
+.cluster-card { background: var(--surface); padding: 20px 22px; border-top: 3px solid var(--indigo); }
+.cluster-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+.cluster-card .members { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+/* ── Geo bars ── */
+.geo-row { display: flex; align-items: center; gap: 12px; margin: 7px 0; }
+.geo-name { font-size: 13.5px; color: var(--text-2); min-width: 130px; }
+.geo-bar { flex: 1; height: 6px; background: var(--surface-2); }
+.geo-fill { height: 100%; background: var(--indigo); }
+.geo-n { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-3); min-width: 18px; text-align: right; }
+
+/* ── Pull quote ── */
+.pull-quote { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; color: var(--indigo); border-left: 3px solid var(--amber); padding-left: 18px; margin: 26px 0; line-height: 1.32; max-width: 640px; }
+.dark-section .pull-quote { color: var(--indigo-lt); }
+
+/* ── Figure caption / source ── */
+.source-line { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); margin-top: 10px; }
+.dark-section .source-line { color: rgba(255,255,255,0.3); }
+
+/* ── Footer ── */
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 56px 32px; }
+.footer-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+.footer-inner h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: white; margin-bottom: 6px; }
+.footer-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; text-align: right; line-height: 1.8; }
+
+/* ── Theme toggle ── */
+.theme-toggle { position: fixed; top: 20px; right: 24px; z-index: 200; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.85); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 16px; cursor: pointer; backdrop-filter: blur(4px); transition: all 0.15s; border-radius: 3px; }
+.theme-toggle:hover { background: rgba(255,255,255,0.18); }
+
+/* ══════════════ LIGHT MODE (default) vs DARK MODE override ══════════════ */
+html.dark body { background: var(--ink); color: rgba(255,255,255,0.85); }
+html.dark .section:not(.dark-section) { background: var(--ink-2); }
+html.dark .section-head h2 { color: #fff; }
+html.dark .section-num { color: rgba(255,255,255,0.4); border-top-color: var(--indigo-lt); }
+html.dark .lead { color: rgba(255,255,255,0.6); }
+html.dark .prose p, html.dark .prose strong { color: rgba(255,255,255,0.78); }
+html.dark .prose strong { color: #fff; }
+html.dark .divider { background: var(--border-dk); }
+html.dark .stat-grid { background: var(--border-dk); }
+html.dark .stat-cell { background: var(--ink-3); }
+html.dark .stat-val { color: var(--indigo-lt); }
+html.dark .stat-val.teal { color: var(--teal-lt); }
+html.dark .stat-label { color: rgba(255,255,255,0.35); }
+html.dark .stat-sub { color: rgba(255,255,255,0.5); }
+html.dark .quality-grid { background: var(--border-dk); }
+html.dark .quality-cell { background: var(--ink-3); }
+html.dark .q-label { color: rgba(255,255,255,0.35); }
+html.dark .q-sub { color: rgba(255,255,255,0.55); }
+html.dark .rule-card { background: var(--ink-3); }
+html.dark .rule-card h4 { color: #fff; }
+html.dark .rule-card p { color: rgba(255,255,255,0.6); }
+html.dark .people-chip { background: var(--ink-3); border-color: var(--border-dk); color: rgba(255,255,255,0.85); }
+html.dark .people-chip .n { color: var(--indigo-lt); }
+html.dark .cluster-grid { background: var(--border-dk); }
+html.dark .cluster-card { background: var(--ink-3); }
+html.dark .cluster-card h4 { color: #fff; }
+html.dark .cluster-card .members { color: rgba(255,255,255,0.6); }
+html.dark .geo-name { color: rgba(255,255,255,0.6); }
+html.dark .geo-bar { background: var(--ink-3); }
+html.dark .geo-fill { background: var(--indigo-lt); }
+html.dark .geo-n { color: rgba(255,255,255,0.35); }
+html.dark .pull-quote { color: var(--indigo-lt); }
+html.dark .source-line { color: rgba(255,255,255,0.3); }
+html.dark .theme-toggle { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.85); }
+html.dark a { color: var(--indigo-lt); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .stat-grid, .quality-grid { grid-template-columns: 1fr 1fr; }
+  .rules-grid, .split, .two-col, .cluster-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .section, .section-sm { padding: 52px 20px; }
+  .hero { padding: 84px 20px 60px; }
+  .stat-grid, .quality-grid { grid-template-columns: 1fr; }
+  .section-head { grid-template-columns: 1fr; gap: 10px; }
+  .section-num { border-top: none; border-left: 2px solid var(--indigo); padding: 0 0 0 14px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-meta { text-align: left; }
+  .theme-toggle { top: 12px; right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeBtn">◑ Dark mode</button>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="kicker" style="color: var(--amber);">THRIVING NEIGHBORHOODS NETWORK</div>
+    <h1 class="display-xl">What the<br>Network Shows</h1>
+    <p class="lead">Nineteen members mapped their working relationships this spring. The structure underneath is the subject of this report: where it already holds, and where a small, specific move could strengthen it further.</p>
+    <div class="hero-meta">
+      <span>NETWORK SURVEY · JUNE 2026</span>
+      <span>19 RESPONDENTS</span>
+      <span>26 PEOPLE NAMED</span>
+      <span>149 CONNECTIONS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ §01 SCALE ═══════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§01</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Scale</div>
+        <h2 class="display-lg">The shape of what exists</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">About one in four possible connections between people in this network actually exists. Spread across thirteen cities, that figure sits well above what distributed networks usually reach. Most land below one in ten.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="stat-val">19</div><div class="stat-label">Survey respondents</div><div class="stat-sub">Completed the full network survey</div></div>
+      <div class="stat-cell"><div class="stat-val">26</div><div class="stat-label">People named</div><div class="stat-sub">Across all survey questions</div></div>
+      <div class="stat-cell"><div class="stat-val amber">149</div><div class="stat-label">Connections rated</div><div class="stat-sub">On trust, energy, depth, support</div></div>
+      <div class="stat-cell"><div class="stat-val teal">0.229</div><div class="stat-label">Network density</div><div class="stat-sub">Roughly 1 in 4 possible ties exist</div></div>
+    </div>
+    <div class="two-col">
+      <div class="prose">
+        <p>Each respondent named and rated their working relationships across five dimensions: trust, energy, support, creativity, and how well they know the other person's work. The picture that emerges is not a popularity ranking. It is closer to a map of where effort already flows, and where it does not yet.</p>
+        <p>Density alone does not say whether a network is healthy. It says whether the wiring is there for things to move through it. At 0.229, the wiring is there.</p>
+      </div>
+      <div class="rule-card teal">
+        <h4>What density tells us</h4>
+        <p>0.05–0.10 is typical for a distributed network. 0.10–0.20 marks an active, well-maintained one. This network sits at 0.229. Above 0.50 starts to look like a tight team rather than a network at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §02 NETWORK MAP ═══════════════════════════════ -->
+<section class="section dark-section" id="s2">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§02</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Structure</div>
+        <h2 class="display-lg">Who is connected to whom</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Three clusters emerged from the relationship data itself, not from geography or org chart. Color marks the group; position shows the pull toward people each person actually named.</p>
+    </div>
+
+    <div class="network-panel">
+      <svg id="networkSvg" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" role="img" aria-label="Network diagram showing three connected clusters and one not-yet-connected member">
+<rect id="netBg" width="960" height="600" fill="#080818" rx="6"/>
+<line x1="810" y1="20" x2="810" y2="580" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<path class="net-blob" d="M 640.0 561.2 Q 640.0 561.2 542.3 528.2 Q 444.6 495.1 459.0 451.0 Q 473.3 406.9 520.3 359.9 Q 567.3 312.9 622.7 334.6 Q 678.2 356.3 715.7 411.6 Q 753.2 466.9 696.6 514.0 Z" fill="rgba(40,37,190,0.12)" />
+<path class="net-blob" d="M 39.5 497.0 Q 39.5 497.0 64.7 433.4 Q 89.9 369.8 216.9 357.2 Q 343.8 344.6 344.4 391.6 Q 345.0 438.7 292.1 468.8 Q 239.2 499.0 139.3 498.0 Z" fill="rgba(12,122,122,0.12)" />
+<path class="net-blob" d="M 351.1 258.6 Q 351.1 258.6 275.2 208.4 Q 199.3 158.2 268.8 100.1 Q 338.3 41.9 486.2 66.1 Q 634.1 90.3 551.5 158.2 Q 468.8 226.1 410.0 242.3 Z" fill="rgba(235,144,1,0.13)" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="223.1" y2="382.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="576.3" y2="355.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="80.0" y2="479.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="562.1" y2="436.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="129.7" y1="388.7" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="223.1" y2="382.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="485.5" y1="478.9" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="360.4" y1="80.0" x2="439.5" y2="193.2" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="360.4" y1="80.0" x2="306.0" y2="367.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="710.0" y2="458.6" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="301.2" y2="434.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="576.3" y2="355.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="596.1" y2="473.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="369.4" y2="218.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="624.6" y2="520.0" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="306.0" y2="367.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="562.1" y1="436.9" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="369.4" y2="218.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="223.1" y2="382.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="306.0" y2="367.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="301.2" y2="434.5" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="132.2" y2="443.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="205.8" y1="422.6" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="426.0" y2="131.3" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="243.3" y2="156.4" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="301.2" y2="434.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="346.1" y2="156.6" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="439.5" y2="193.2" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="369.4" y1="218.5" x2="332.1" y2="196.9" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="369.4" y2="218.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="596.1" y2="473.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="306.0" y2="367.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="591.5" y2="101.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="576.3" y2="355.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="646.1" y1="386.4" x2="710.0" y2="458.6" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="562.1" y2="436.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="243.3" y2="156.4" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="223.1" y2="382.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="576.3" y2="355.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="596.1" y2="473.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="306.0" y2="367.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="301.2" y1="434.5" x2="369.4" y2="218.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="562.1" y2="436.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="369.4" y2="218.5" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="426.0" y2="131.3" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="243.3" y2="156.4" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="439.5" y2="193.2" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="306.0" y2="367.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="346.1" y1="156.6" x2="332.1" y2="196.9" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="624.6" y1="520.0" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="624.6" y1="520.0" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="624.6" y1="520.0" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="624.6" y1="520.0" x2="596.1" y2="473.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="132.2" y1="443.2" x2="205.8" y2="422.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="132.2" y1="443.2" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="132.2" y1="443.2" x2="223.1" y2="382.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="132.2" y1="443.2" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="132.2" y1="443.2" x2="80.0" y2="479.9" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="205.8" y2="422.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="243.3" y2="156.4" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="301.2" y2="434.5" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="132.2" y2="443.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="596.1" y2="473.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="223.1" y1="382.9" x2="306.0" y2="367.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="301.2" y2="434.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="624.6" y2="520.0" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="576.3" y2="355.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="223.1" y2="382.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="596.1" y2="473.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="132.2" y2="443.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="369.4" y2="218.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="516.1" y1="417.3" x2="205.8" y2="422.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="646.1" y2="386.4" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="439.5" y2="193.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="576.3" y1="355.9" x2="301.2" y2="434.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="710.0" y2="458.6" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="426.0" y2="131.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="646.1" y2="386.4" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="624.6" y2="520.0" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="596.1" y2="473.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="601.5" y1="425.2" x2="205.8" y2="422.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="562.1" y2="436.9" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="646.1" y2="386.4" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="624.6" y2="520.0" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="516.1" y2="417.3" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="601.5" y2="425.2" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="332.1" y2="196.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="306.0" y2="367.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="301.2" y2="434.5" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="596.1" y1="473.9" x2="710.0" y2="458.6" stroke="#2825BE" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="332.1" y2="196.9" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="576.3" y2="355.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="426.0" y2="131.3" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="562.1" y2="436.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="221.8" y2="458.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="223.1" y2="382.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="601.5" y2="425.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="591.5" y2="101.2" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="439.5" y1="193.2" x2="132.2" y2="443.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="205.8" y2="422.6" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="426.0" y2="131.3" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="243.3" y2="156.4" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="360.4" y2="80.0" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="601.5" y2="425.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="369.4" y2="218.5" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="346.1" y2="156.6" stroke="#EB9001" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="132.2" y2="443.2" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="596.1" y2="473.9" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="332.1" y1="196.9" x2="516.1" y2="417.3" stroke="#4a47d6" stroke-opacity="0.18" stroke-width="0.8" />
+<line class="net-edge" x1="80.0" y1="479.9" x2="129.7" y2="388.7" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="80.0" y1="479.9" x2="205.8" y2="422.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="80.0" y1="479.9" x2="221.8" y2="458.6" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<line class="net-edge" x1="80.0" y1="479.9" x2="132.2" y2="443.2" stroke="#0C7A7A" stroke-opacity="0.4" stroke-width="1.1" />
+<circle class="net-node" cx="129.7" cy="388.7" r="10.7" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="148.4" y="392.2" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Aidan D.</text>
+<circle class="net-node" cx="485.5" cy="478.9" r="10.2" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="503.7" y="482.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Alyssa R.</text>
+<circle class="net-node" cx="360.4" cy="80.0" r="8.4" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="376.7" y="83.5" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Antoinette T.</text>
+<circle class="net-node" cx="562.1" cy="436.9" r="16.2" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="586.3" y="440.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Brenna Z.</text>
+<circle class="net-node" cx="205.8" cy="422.6" r="13.9" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="227.7" y="426.1" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Brian F.</text>
+<circle class="net-node" cx="369.4" cy="218.5" r="13.9" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="391.3" y="222.0" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Dan R.</text>
+<circle class="net-node" cx="646.1" cy="386.4" r="13.0" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="667.0" y="389.9" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Grace H.</text>
+<circle class="net-node" cx="301.2" cy="434.5" r="14.3" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="323.5" y="438.0" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Jessica K.</text>
+<circle class="net-node" cx="346.1" cy="156.6" r="12.0" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="366.2" y="160.1" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Jonathan H.</text>
+<circle class="net-node" cx="624.6" cy="520.0" r="10.7" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="643.2" y="523.5" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Katie S.</text>
+<circle class="net-node" cx="132.2" cy="443.2" r="12.0" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="152.2" y="446.7" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Keri B.</text>
+<circle class="net-node" cx="223.1" cy="382.9" r="14.3" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="245.5" y="386.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Kim J.</text>
+<circle class="net-node" cx="516.1" cy="417.3" r="18.0" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="542.1" y="420.8" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Kristina F.</text>
+<circle class="net-node" cx="576.3" cy="355.9" r="12.5" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="596.8" y="359.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Nate T.</text>
+<circle class="net-node" cx="601.5" cy="425.2" r="15.2" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="624.8" y="428.7" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Nicholas T.</text>
+<circle class="net-node" cx="596.1" cy="473.9" r="15.2" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="619.4" y="477.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Ron W.</text>
+<circle class="net-node" cx="439.5" cy="193.2" r="16.2" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="463.7" y="196.7" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Stacy B.</text>
+<circle class="net-node" cx="332.1" cy="196.9" r="15.7" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="355.8" y="200.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Tim S.</text>
+<circle class="net-node" cx="80.0" cy="479.9" r="9.8" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="97.8" y="483.4" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Tracy H.</text>
+<circle class="net-node" cx="221.8" cy="458.6" r="13.4" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="243.2" y="462.1" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Juli K.</text>
+<circle class="net-node" cx="306.0" cy="367.2" r="10.7" fill="#0C7A7A" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="324.7" y="370.7" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Tim C.</text>
+<circle class="net-node" cx="710.0" cy="458.6" r="8.8" fill="#2825BE" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="726.8" y="462.1" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Alaide I.</text>
+<circle class="net-node" cx="426.0" cy="131.3" r="9.3" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="443.3" y="134.8" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Dave H.</text>
+<circle class="net-node" cx="243.3" cy="156.4" r="9.3" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="260.6" y="159.9" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">David P.</text>
+<circle class="net-node" cx="591.5" cy="101.2" r="7.9" fill="#EB9001" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="607.4" y="104.7" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Yvonne M.</text>
+<circle class="net-node net-node--isolate" cx="875.0" cy="300.0" r="11" fill="#CF4C38" stroke="white" stroke-width="1.5" />
+<text class="net-label" x="875.0" y="330.0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.78)">Ashley W.</text>
+<text x="875.0" y="274.0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.08em">NOT YET</text>
+<text x="875.0" y="286.0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.08em">CONNECTED</text>
+<circle cx="26" cy="514" r="6" fill="#2825BE" stroke="white" stroke-width="1"/>
+<text x="40" y="518" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.6)">Group A · 9 people</text>
+<circle cx="26" cy="534" r="6" fill="#0C7A7A" stroke="white" stroke-width="1"/>
+<text x="40" y="538" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.6)">Group B · 8 people</text>
+<circle cx="26" cy="554" r="6" fill="#EB9001" stroke="white" stroke-width="1"/>
+<text x="40" y="558" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.6)">Group C · 8 people</text>
+<circle cx="26" cy="574" r="6" fill="#CF4C38" stroke="white" stroke-width="1"/>
+<text x="40" y="578" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="rgba(255,255,255,0.6)">Not yet connected</text>
+<text x="26" y="600" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="rgba(255,255,255,0.35)">Node size = number of connections</text>
+<text x="936" y="570" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="rgba(255,255,255,0.3)">26 people · 149 connections · snapshot June 2026</text>
+<text x="936" y="584" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="rgba(255,255,255,0.3)">Source: TNN NetCanvas Network Survey</text>
+</svg>
+    </div>
+    <p style="font-size: 13.5px; color: rgba(255,255,255,0.45); max-width: 680px; margin-top: 4px;">Edges inside a cluster are drawn in that cluster's color. Edges that cross between clusters are drawn in indigo at low opacity, present but quieter, since the story here is the grouping, not every individual tie.</p>
+  </div>
+</section>
+
+<div class="divider divider-dk"></div>
+
+<!-- ═══════════════════════════════ §03 CLUSTERS ═══════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§03</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Structure</div>
+        <h2 class="display-lg">Three groups, not by geography</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">People in the same city often land in different groups. Something other than location is shaping who connects with whom; shared work, shared history, or simply who came up together.</p>
+    </div>
+    <div class="cluster-grid">
+      <div class="cluster-card" style="border-top-color: var(--indigo);">
+        <h4>Group A · 9 people</h4>
+        <div class="members">Alaide Vilchis Ibarra, Alyssa Ruch, Brenna Zeimet, Grace Harrison, Katie Schoenhoff, Kristina Fruge, Nate Tubbs, Nicholas Tangen, Ron Werner</div>
+      </div>
+      <div class="cluster-card" style="border-top-color: var(--teal);">
+        <h4>Group B · 8 people</h4>
+        <div class="members">Aidan Duffy, Brian Foreman, Jessica Ketola, Juli Kalbaugh, Keri Burns, Kim Jones, Tim Conder, Tracy Hanrahan</div>
+      </div>
+      <div class="cluster-card" style="border-top-color: var(--amber);">
+        <h4>Group C · 8 people</h4>
+        <div class="members">Antoinette Thomas, Dan Rhodes, Dave Hillis, David Park, Jonathan Hayden, Stacy Brungardt, Tim Soerens, Yvonne Murray</div>
+      </div>
+    </div>
+    <p class="pull-quote">The boundary worth asking about is not where each group ends. It is who already stands between two of them.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §04 DEPTH ═══════════════════════════════ -->
+<section class="section" id="s4" style="background: var(--surface-2);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§04</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Depth</div>
+        <h2 class="display-lg">About half are ready to do more</h2>
+      </div>
+    </div>
+    <div class="depth-bar">
+      <div class="depth-seg" style="flex:26; background:#cfd3d6; color:#374151;">26</div>
+      <div class="depth-seg" style="flex:47; background:#a8a3e8; color:#1f1d6e;">47</div>
+      <div class="depth-seg" style="flex:37; background: var(--indigo);">37</div>
+      <div class="depth-seg" style="flex:39; background: var(--indigo-lt);">39</div>
+    </div>
+    <div class="depth-legend">
+      <div class="dl-item"><div class="dl-dot" style="background:#cfd3d6;"></div>Awareness (26)</div>
+      <div class="dl-item"><div class="dl-dot" style="background:#a8a3e8;"></div>Connection (47)</div>
+      <div class="dl-item"><div class="dl-dot" style="background: var(--indigo);"></div>Cooperation (37)</div>
+      <div class="dl-item"><div class="dl-dot" style="background: var(--indigo-lt);"></div>Collaboration (39)</div>
+    </div>
+    <div class="two-col" style="margin-top: 28px;">
+      <div class="prose">
+        <p>Fifty-one percent of connections have reached Cooperation or Collaboration. People are not just aware of each other; they are building something together. The other half sit at Awareness or Connection, which is not a deficit so much as a list.</p>
+        <p>A relationship at Awareness already has a foothold. What it is missing is occasion, not trust.</p>
+      </div>
+      <div class="rule-card">
+        <h4>A question for the room</h4>
+        <p>Which relationship feels closest to leveling up, from knowing someone to actually building with them? What's the one thing standing in the way?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §05 QUALITY ═══════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§05</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Quality</div>
+        <h2 class="display-lg">Where people work together, it holds</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Among the 76 relationships that have reached Cooperation or Collaboration, here is how people describe them.</p>
+    </div>
+    <div class="quality-grid">
+      <div class="quality-cell"><div class="q-val" style="color: var(--green);">80%</div><div><div class="q-label">Trust</div><div class="q-sub">Score high on trust. A strong foundation, already in place.</div></div></div>
+      <div class="quality-cell"><div class="q-val" style="color: var(--green);">86%</div><div><div class="q-label">Energy</div><div class="q-sub">Feel energizing rather than draining. The network gives back.</div></div></div>
+      <div class="quality-cell"><div class="q-val" style="color: var(--amber);">61%</div><div><div class="q-label">Support</div><div class="q-sub">Score high on mutual support, the dimension with the most room to grow.</div></div></div>
+      <div class="quality-cell"><div class="q-val" style="color: var(--amber);">70%</div><div><div class="q-label">Creativity</div><div class="q-sub">Feel creatively alive, generating ideas rather than maintaining a routine.</div></div></div>
+    </div>
+    <p>Trust and energy are the clear strengths. Support is worth a second look: not because something is wrong, but because a small shift here would likely lift several relationships at once.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §06 RHYTHM ═══════════════════════════════ -->
+<section class="section dark-section" id="s6">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§06</div>
+      <div>
+        <div class="eyebrow eyebrow-amber">Rhythm</div>
+        <h2 class="display-lg">The relationships are real. The rhythm is the open question.</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Among the connections people described, 87% happen monthly or less. Only 16 out of 123 are weekly or more. And 56% are roughly balanced; the rest lean more in one direction than the other.</p>
+    </div>
+    <div class="rule-card amber" style="max-width: 640px;">
+      <h4>Worth trying</h4>
+      <p>A thirty-minute monthly peer call. A shared channel with one standing prompt. A quarterly pairing check-in. Any of these would activate trust and energy that already exist between gatherings, without asking anyone to add a major commitment.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider divider-dk"></div>
+
+<!-- ═══════════════════════════════ §07 WHO HOLDS IT TOGETHER ═══════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§07</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Roles</div>
+        <h2 class="display-lg">A few people carry a lot of the connective load</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Some members sit on more of the paths between others than anyone else. Reaching someone in a different part of the network often runs through one of them.</p>
+    </div>
+    <div class="people-row">
+      <div class="people-chip">Stacy Brungardt <span class="n">top connective role</span></div>
+      <div class="people-chip">Tim Soerens <span class="n">top connective role</span></div>
+      <div class="people-chip">Kristina Fruge <span class="n">top connective role</span></div>
+      <div class="people-chip">Keri Burns <span class="n">strong connective role</span></div>
+    </div>
+    <p>Two people were named by far more of the network than anyone else, a clear marker of trust and visibility:</p>
+    <div class="people-row">
+      <div class="people-chip">Kristina Fruge <span class="n">named by 14</span></div>
+      <div class="people-chip">Juli Kalbaugh <span class="n">named by 14</span></div>
+    </div>
+    <div class="rule-card terra" style="margin-top: 24px; max-width: 680px;">
+      <h4>An asset and a load, at once</h4>
+      <p>These relationships are a real reason the network holds together. It is worth checking with each of them directly: what would make it easier to keep doing this, or for the connective work to be shared more widely?</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §08 GO-TO ═══════════════════════════════ -->
+<section class="section" id="s8" style="background: var(--surface-2);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§08</div>
+      <div>
+        <div class="eyebrow eyebrow-teal">Roles</div>
+        <h2 class="display-lg">There's already a short list for when people get stuck</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Asked who they'd call if they hit a hard problem, a clear pattern showed up. Different names than who people simply work with day to day.</p>
+    </div>
+    <div class="people-row">
+      <div class="people-chip">David Park <span class="n">named by 5</span></div>
+      <div class="people-chip">Tim Conder <span class="n">named by 4</span></div>
+      <div class="people-chip">Juli Kalbaugh <span class="n">named by 4</span></div>
+      <div class="people-chip">Tim Soerens <span class="n">named by 3</span></div>
+      <div class="people-chip">Brenna Zeimet <span class="n">named by 3</span></div>
+    </div>
+    <p>This is informal influence that an org chart would never show. Naming it out loud, and asking what would make that role sustainable, costs little and returns a lot.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §09 ASPIRED ═══════════════════════════════ -->
+<section class="section" id="s9">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§09</div>
+      <div>
+        <div class="eyebrow eyebrow-green">Opportunity</div>
+        <h2 class="display-lg">People already named who they want to build with</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead">Several respondents named specific people they want a deeper relationship with. Not a general wish; an actual list.</p>
+    </div>
+    <div class="people-row">
+      <div class="people-chip">Nicholas Tangen <span class="n">named by 4</span></div>
+      <div class="people-chip">Kim Jones <span class="n">named by 4</span></div>
+      <div class="people-chip">Nate Tubbs <span class="n">named by 4</span></div>
+      <div class="people-chip">Dan Rhodes <span class="n">named by 3</span></div>
+    </div>
+    <div class="rule-card green" style="margin-top: 20px; max-width: 680px;">
+      <h4>Worth trying</h4>
+      <p>A facilitated round of introductions, paired against this exact list, could move several relationships from Connection to Cooperation in a single gathering. This is not a cold start. The data already shows which pairs to prioritize.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §10 ANCHORS + GEO ═══════════════════════════════ -->
+<section class="section" id="s10" style="background: var(--surface-2);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§10</div>
+      <div>
+        <div class="eyebrow eyebrow-ink">Context</div>
+        <h2 class="display-lg">Anchors and geography</h2>
+      </div>
+    </div>
+    <div class="split">
+      <div>
+        <div class="eyebrow eyebrow-amber" style="margin-bottom: 8px;">Institutional anchors</div>
+        <div class="prose">
+          <p><strong>Augsburg University</strong> and <strong>Parish Collective</strong> are named more than any other organization, with <strong>Black Mountain School of Theology</strong> close behind. Real load-bearing institutions, quietly anchoring a lot of the relational infrastructure here.</p>
+          <p>Worth asking whether that load sits evenly across the network's full range of work, or concentrates more than it needs to.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow eyebrow-teal" style="margin-bottom: 8px;">Where the network lives</div>
+        <div class="geo-row"><span class="geo-name">Chicago, IL</span><span class="geo-bar"><span class="geo-fill" style="width:100%;"></span></span><span class="geo-n">4</span></div>
+        <div class="geo-row"><span class="geo-name">Minneapolis, MN</span><span class="geo-bar"><span class="geo-fill" style="width:75%;"></span></span><span class="geo-n">3</span></div>
+        <div class="geo-row"><span class="geo-name">Birmingham, AL</span><span class="geo-bar"><span class="geo-fill" style="width:50%;"></span></span><span class="geo-n">2</span></div>
+        <div class="geo-row"><span class="geo-name">9 other cities</span><span class="geo-bar"><span class="geo-fill" style="width:25%;"></span></span><span class="geo-n">1 ea.</span></div>
+        <p style="font-size: 13px; color: var(--text-2); margin-top: 12px;">A third of the network is the only member in its city. That makes the ties crossing cluster lines carry more weight than they might elsewhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §11 CLOSER LOOK ═══════════════════════════════ -->
+<section class="section" id="s11">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§11</div>
+      <div>
+        <div class="eyebrow eyebrow-terra">Worth a closer look</div>
+        <h2 class="display-lg">Two people, one easy move</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="lead"><strong>Alyssa Ruch</strong> and <strong>Ashley Wilson</strong> have not yet been named back by anyone else in the network. That is unlikely to mean they are not contributing. It more likely means the right introduction has not happened yet, or their work overlaps with people who have not yet taken the survey.</p>
+    </div>
+    <div class="rule-card terra" style="max-width: 680px;">
+      <h4>Worth trying</h4>
+      <p>A couple of specific, warm one-on-one introductions, matched on shared interest or geography, would likely close this quickly. Small effort, clear return.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §12 HOW PEOPLE WORK ═══════════════════════════════ -->
+<section class="section" id="s12" style="background: var(--surface-2);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§12</div>
+      <div>
+        <div class="eyebrow eyebrow-ink">Pattern</div>
+        <h2 class="display-lg">Mostly learning together. Building together is rarer.</h2>
+      </div>
+    </div>
+    <div class="prose">
+      <ul>
+        <li><strong>Peer learning and knowledge exchange</strong> is the most common connection type, by a wide margin.</li>
+        <li><strong>Informal support and thought partnership</strong> follows closely behind. A lot of these relationships are sounding boards.</li>
+        <li><strong>Joint programming or co-delivery</strong> is meaningfully rarer; the clearest room to grow.</li>
+      </ul>
+      <p>Referrals, funding, and governance ties are present but small. These tend to be the highest-trust, highest-commitment relationship types, which is exactly why there is headroom here.</p>
+      <p>Thinking together is the foundation that building together gets built on. The network appears to be exactly where that sequence would predict.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ §13 NEXT STEPS ═══════════════════════════════ -->
+<section class="section dark-section" id="s13">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§13</div>
+      <div>
+        <div class="eyebrow eyebrow-amber">Next</div>
+        <h2 class="display-lg">Four moves worth making</h2>
+      </div>
+    </div>
+    <div class="split">
+      <div class="rule-card" style="background: var(--ink-3); border-left-color: var(--terra);">
+        <h4 style="color: #fff;">1. Protect the people holding it together</h4>
+        <p style="color: rgba(255,255,255,0.6);">Stacy Brungardt, Tim Soerens, Kristina Fruge, and Keri Burns carry a disproportionate share of the connective load. Ask each of them directly what would make it easier, or how that load could be shared more widely.</p>
+      </div>
+      <div class="rule-card" style="background: var(--ink-3); border-left-color: var(--green);">
+        <h4 style="color: #fff;">2. Run the aspired-connections list</h4>
+        <p style="color: rgba(255,255,255,0.6);">People have already named who they want to build with. A facilitated pairing session could turn that list into real working relationships in one gathering.</p>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 14px;">
+      <div class="rule-card" style="background: var(--ink-3); border-left-color: var(--amber);">
+        <h4 style="color: #fff;">3. Build a light rhythm between gatherings</h4>
+        <p style="color: rgba(255,255,255,0.6);">A monthly call or a channel with a standing prompt would activate trust and energy that's currently dormant between convenings.</p>
+      </div>
+      <div class="rule-card" style="background: var(--ink-3); border-left-color: var(--teal);">
+        <h4 style="color: #fff;">4. Make two warm introductions</h4>
+        <p style="color: rgba(255,255,255,0.6);">A small, specific effort to connect Alyssa Ruch and Ashley Wilson into the rest of the network closes the one clear gap this data shows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <h3>Thriving Neighborhoods Network</h3>
+      <div class="lead-light" style="font-size: 13.5px;">Prepared for internal use within the network.</div>
+    </div>
+    <div class="footer-meta">
+      <div>NETWORK SURVEY · JUNE 2026</div>
+      <div>SOURCE: TNN NETCANVAS SURVEY, N=19</div>
+      <div>26 PEOPLE · 149 CONNECTIONS</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hero node-network background, adapted from the C4C style guide
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const COLORS = ['#2825BE','#EB9001','#0C7A7A','#CF4C38','#2e9e5b'];
+  let W, H, nodes = [];
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  function init() {
+    nodes = [];
+    const count = Math.floor((W * H) / 18000);
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: 2 + Math.random() * 5,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        opacity: 0.2 + Math.random() * 0.5
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const dist = 170;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < dist) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(40,37,190,${(1-d/dist)*0.18})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = n.opacity;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+  function tick() {
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < -20) n.x = W+20;
+      if (n.x > W+20) n.x = -20;
+      if (n.y < -20) n.y = H+20;
+      if (n.y > H+20) n.y = -20;
+    }
+    draw();
+    requestAnimationFrame(tick);
+  }
+  let ro = new ResizeObserver(() => { resize(); init(); });
+  ro.observe(canvas.parentElement);
+  resize(); init(); tick();
+})();
+
+// Light/dark toggle
+(function() {
+  var btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', function () {
+    var on = document.documentElement.classList.toggle('dark');
+    btn.textContent = on ? '◑ Light mode' : '◑ Dark mode';
+  });
+})();
+</script>
+
+</body>
+</html>
