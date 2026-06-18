@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Activity 4 · What undermines them? — TNN 2026</title>
-  <meta name="description" content="Activity 4 of the TNN 2026 retreat roadmap. What undermines them? (Upcoming.)" />
+  <meta name="description" content="Activities 3 and 4 of the TNN 2026 retreat, run as one. The conditions that sustain each component and the pressures that undermine them." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../apple-touch-icon.png" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Activity 4 · What undermines them? — TNN 2026" />
+  <meta property="og:description" content="The conditions that sustain each component and the pressures that undermine them." />
   <meta property="og:image" content="../og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,48 +31,28 @@
     [data-theme="dark"] .act-phase-tag .num { color: var(--ink); }
     .act-date { font-size: 0.78rem; color: var(--ink-muted); letter-spacing: 0.04em; }
     .act-header h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.0; color: var(--ink); margin-bottom: 1rem; }
-    .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 700px; line-height: 1.55; }
+    .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 720px; line-height: 1.55; }
     .act-header .adds strong { font-style: normal; font-weight: 500; color: var(--c4); }
 
-    .upcoming-panel {
-      padding: 3rem 2.5rem;
-      background: var(--card2);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      text-align: center;
-      max-width: 760px;
-      margin: 2rem auto 4rem;
-    }
-    .upcoming-panel .icon-circle {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--c4);
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--c4);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-    }
-    .upcoming-panel h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
-    .upcoming-panel p {
-      color: var(--ink-soft);
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .upcoming-panel p:last-child { margin-bottom: 0; }
-    .upcoming-panel strong { color: var(--ink); font-weight: 500; }
+    .act-section { margin-bottom: 4rem; }
+    .act-section-head { margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+    .act-section-head .kicker { margin-bottom: 0.4rem; }
+    .act-section-head h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.5rem; color: var(--ink); line-height: 1.1; }
+
+    .narrative { max-width: 760px; }
+    .narrative p { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.25rem; font-size: 1rem; }
+    .narrative p:last-child { margin-bottom: 0; }
+    .narrative strong { color: var(--ink); font-weight: 500; }
+
+    .asset-block { margin-bottom: 2.5rem; }
+    .asset-block h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.4rem; }
+    .asset-block .lead { color: var(--ink-soft); line-height: 1.6; margin-bottom: 1rem; max-width: 760px; }
+
+    .carries { padding: 2rem 2.25rem; background: var(--card2); border: 1px solid var(--line); border-left: 4px solid var(--amber); border-radius: 0 8px 8px 0; max-width: 900px; }
+    .carries h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .carries p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 0.85rem; }
+    .carries p:last-child { margin-bottom: 0; }
+    .carries strong { color: var(--ink); font-weight: 500; }
 
     .seq-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 4rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
     .seq-nav a { padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); transition: border-color 180ms ease, transform 180ms ease; }
@@ -129,7 +110,7 @@
             <a class="crumb-node" data-c="1" data-state="complete" href="01-neighborhood.html">
               <span class="dot">1</span>
             </a>
-            <a class="crumb-node" data-c="2" data-state="upcoming" href="02-care.html">
+            <a class="crumb-node" data-c="2" data-state="complete" href="02-care.html">
               <span class="dot">2</span>
             </a>
           </div>
@@ -137,7 +118,7 @@
         <div class="crumb-phase active" data-phase="2">
           <div class="crumb-phase-label">Phase 2 · Systems</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="3" data-state="upcoming" href="03-alive.html">
+            <a class="crumb-node" data-c="3" data-state="complete" href="03-alive.html">
               <span class="dot">3</span>
             </a>
             <a class="crumb-node" data-c="4" data-state="current" href="04-undermines.html">
@@ -175,21 +156,122 @@
 
     <header class="act-header">
       <div class="meta-row">
-        <span class="act-phase-tag"><span class="num">4</span>Activity 4 · Phase 2 · Understanding systems</span>
-        <span class="status upcoming"><span class="dot"></span>Upcoming</span>
-        <span class="act-date">Scheduled for the retreat</span>
+        <span class="act-phase-tag"><span class="num">4</span>Activities 3 &amp; 4 · Phase 2 · Understanding systems</span>
+        <span class="status complete"><span class="dot"></span>Complete</span>
+        <span class="act-date">Run together at the retreat · Synthesis complete</span>
       </div>
       <h1>What undermines them?</h1>
-      <p class="adds"><strong>Adds:</strong> the barriers, drivers, and reinforcing pressures that weaken conditions.</p>
+      <p class="adds"><strong>Adds:</strong> the conditions that sustain each component, and the pressures that undermine them.</p>
     </header>
 
-    <div class="upcoming-panel">
-      <div class="icon-circle">4</div>
-      <h3>This activity hasn't happened yet</h3>
-      <p>Activity 4 is scheduled for the retreat. When the work is complete and the synthesis is ready, this page will fill in with the assets, artifacts, and a narrative of what came out of the cohort's discussion.</p>
-      <p>Until then, the question and what it's expected to add are above. Everything from earlier activities carries forward into this one.</p>
-    </div>
+    <!-- THE WORK -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">The work</div>
+        <h2>Two questions, one piece of work</h2>
+      </div>
+      <div class="narrative">
+        <p>Activities 3 and 4 ran as one. The first asked what keeps the components alive, the conditions and dependencies that sustain them. The second asked what undermines those same conditions. On the flip charts the two built on top of each other, so the cohort treated them together, component by component.</p>
+        <p>The result is one set of materials organized by component. For each of the seven, a conditions document holds what sustains it and what works against it, side by side. The interactive views present the same material on screen, one component at a time.</p>
+        <p>Reading them together is the point. A condition and the pressure working against it tend to sit close to each other. Seeing both at once is what the combined session was built to make possible.</p>
+      </div>
+    </section>
 
+    <!-- ASSETS: INTERACTIVE -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">Assets</div>
+        <h2>The seven components, on screen</h2>
+      </div>
+      <div class="asset-block">
+        <p class="lead">An interactive view for each component, its conditions and the pressures on them, one component at a time. Each opens in a new tab.</p>
+        <div class="dl-grid">
+          <a class="dl-card" href="../assets/activity-04/common-stakes.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Common Stakes</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/institutional-anchors.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Institutional Anchors</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/mutual-obligation.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Mutual Obligation</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/place-built-environment.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Place &amp; Built Environment</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/recognition-belonging.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Recognition &amp; Belonging</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/rhythm-recurrence.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Rhythm &amp; Recurrence</div><div class="meta">Interactive view</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/story-memory-identity.html" target="_blank" rel="noopener">
+            <div class="ico">HTML</div>
+            <div class="body"><div class="title">Story, Memory &amp; Identity</div><div class="meta">Interactive view</div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASSETS: DOCUMENTS -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">Assets</div>
+        <h2>The seven components, as documents</h2>
+      </div>
+      <div class="asset-block">
+        <p class="lead">One conditions document per component, holding what sustains it and what undermines it side by side.</p>
+        <div class="dl-grid">
+          <a class="dl-card" href="../assets/activity-04/Common%20Stakes%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Common Stakes</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Institutional%20Anchors%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Institutional Anchors</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Mutual%20Obligation%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Mutual Obligation</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Place%20Built%20Environment%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Place &amp; Built Environment</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Recognition%20Belonging%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Recognition &amp; Belonging</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Rhythm%20Recurrence%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Rhythm &amp; Recurrence</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+          <a class="dl-card" href="../assets/activity-04/Story%20Memory%20Identity%20Conditions.pdf" download>
+            <div class="ico">PDF</div>
+            <div class="body"><div class="title">Story, Memory &amp; Identity</div><div class="meta">Conditions: sustains and undermines</div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRIES FORWARD -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">What carries forward</div>
+        <h2>Into Activity 5</h2>
+      </div>
+      <div class="carries">
+        <p><strong>The components now carry both their conditions and their pressures.</strong> Activity 5 widens the frame from the conditions themselves to the people and organizations around them, asking who is actually in the ecosystem.</p>
+        <p><strong>The seven components stay as the backdrop.</strong> The actors mapped in Phase 3 are read against the same components, so the conditions work done here is what the ecosystem gets measured against.</p>
+      </div>
+    </section>
+
+    <!-- SEQUENTIAL NAV -->
     <nav class="seq-nav" aria-label="Activity navigation">
       <a class="prev" href="03-alive.html">
         <div class="dir">← Previous</div>
@@ -209,8 +291,8 @@
         <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
       </div>
       <div class="meta">
-        Activity 4 · upcoming<br>
-        Last updated May 29, 2026
+        Activities 3 &amp; 4 · combined synthesis<br>
+        Last updated June 18, 2026
       </div>
     </div>
   </footer>
