@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Activity 6 · Who touches the conditions? — TNN 2026</title>
-  <meta name="description" content="Activity 6 of the TNN 2026 retreat roadmap. Who touches the conditions? (Upcoming.)" />
+  <meta name="description" content="Activity 6 of the TNN 2026 retreat roadmap. Who touches the conditions? The network report laying actors against the conditions of thriving." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../apple-touch-icon.png" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Activity 6 · Who touches the conditions? — TNN 2026" />
+  <meta property="og:description" content="The network report laying actors against the conditions of thriving." />
   <meta property="og:image" content="../og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,45 +34,32 @@
     .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 700px; line-height: 1.55; }
     .act-header .adds strong { font-style: normal; font-weight: 500; color: var(--c6); }
 
-    .upcoming-panel {
-      padding: 3rem 2.5rem;
-      background: var(--card2);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      text-align: center;
-      max-width: 760px;
-      margin: 2rem auto 4rem;
-    }
-    .upcoming-panel .icon-circle {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--c6);
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--c6);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-    }
-    .upcoming-panel h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
-    .upcoming-panel p {
-      color: var(--ink-soft);
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .upcoming-panel p:last-child { margin-bottom: 0; }
-    .upcoming-panel strong { color: var(--ink); font-weight: 500; }
+    .act-section { margin-bottom: 4rem; }
+    .act-section-head { margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+    .act-section-head .kicker { margin-bottom: 0.4rem; }
+    .act-section-head h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.5rem; color: var(--ink); line-height: 1.1; }
+
+    .narrative { max-width: 760px; }
+    .narrative p { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.25rem; font-size: 1rem; }
+    .narrative p:last-child { margin-bottom: 0; }
+    .narrative strong { color: var(--ink); font-weight: 500; }
+
+    .asset-block { margin-bottom: 2.5rem; }
+    .asset-block h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.4rem; }
+    .asset-block .lead { color: var(--ink-soft); line-height: 1.6; margin-bottom: 1rem; max-width: 760px; }
+
+    .embed-frame { width: 100%; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--card); margin: 1rem 0 1.5rem; }
+    .embed-frame iframe { width: 100%; height: 760px; border: 0; display: block; }
+    .embed-actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; padding: 0.85rem 1.1rem; background: var(--card2); border-top: 1px solid var(--line); font-size: 0.85rem; }
+    .embed-actions .label { color: var(--ink-muted); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; margin-right: 0.4rem; }
+    .embed-actions a { text-decoration: none; color: var(--ink); border: 1px solid var(--line2); padding: 0.35rem 0.7rem; border-radius: 5px; font-size: 0.8rem; transition: background 180ms ease; }
+    .embed-actions a:hover { background: var(--card); }
+
+    .carries { padding: 2rem 2.25rem; background: var(--card2); border: 1px solid var(--line); border-left: 4px solid var(--amber); border-radius: 0 8px 8px 0; max-width: 900px; }
+    .carries h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .carries p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 0.85rem; }
+    .carries p:last-child { margin-bottom: 0; }
+    .carries strong { color: var(--ink); font-weight: 500; }
 
     .seq-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 4rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
     .seq-nav a { padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); transition: border-color 180ms ease, transform 180ms ease; }
@@ -129,7 +117,7 @@
             <a class="crumb-node" data-c="1" data-state="complete" href="01-neighborhood.html">
               <span class="dot">1</span>
             </a>
-            <a class="crumb-node" data-c="2" data-state="upcoming" href="02-care.html">
+            <a class="crumb-node" data-c="2" data-state="complete" href="02-care.html">
               <span class="dot">2</span>
             </a>
           </div>
@@ -137,10 +125,10 @@
         <div class="crumb-phase" data-phase="2">
           <div class="crumb-phase-label">Phase 2 · Systems</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="3" data-state="upcoming" href="03-alive.html">
+            <a class="crumb-node" data-c="3" data-state="complete" href="03-alive.html">
               <span class="dot">3</span>
             </a>
-            <a class="crumb-node" data-c="4" data-state="upcoming" href="04-undermines.html">
+            <a class="crumb-node" data-c="4" data-state="complete" href="04-undermines.html">
               <span class="dot">4</span>
             </a>
           </div>
@@ -148,7 +136,7 @@
         <div class="crumb-phase active" data-phase="3">
           <div class="crumb-phase-label">Phase 3 · Ecosystem</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="5" data-state="upcoming" href="05-ecosystem.html">
+            <a class="crumb-node" data-c="5" data-state="complete" href="05-ecosystem.html">
               <span class="dot">5</span>
             </a>
             <a class="crumb-node" data-c="6" data-state="current" href="06-touches.html">
@@ -176,20 +164,57 @@
     <header class="act-header">
       <div class="meta-row">
         <span class="act-phase-tag"><span class="num">6</span>Activity 6 · Phase 3 · Revealing the ecosystem</span>
-        <span class="status upcoming"><span class="dot"></span>Upcoming</span>
-        <span class="act-date">Scheduled for the retreat</span>
+        <span class="status complete"><span class="dot"></span>Complete</span>
+        <span class="act-date">Held at the retreat · Network report complete</span>
       </div>
       <h1>Who touches the conditions?</h1>
       <p class="adds"><strong>Adds:</strong> how actors and sectors actually influence each condition of thriving.</p>
     </header>
 
-    <div class="upcoming-panel">
-      <div class="icon-circle">6</div>
-      <h3>This activity hasn't happened yet</h3>
-      <p>Activity 6 is scheduled for the retreat. When the work is complete and the synthesis is ready, this page will fill in with the assets, artifacts, and a narrative of what came out of the cohort's discussion.</p>
-      <p>Until then, the question and what it's expected to add are above. Everything from earlier activities carries forward into this one.</p>
-    </div>
+    <!-- THE WORK -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">The work</div>
+        <h2>Actors against conditions</h2>
+      </div>
+      <div class="narrative">
+        <p>Activity 6 lays the actors against the conditions. Activity 5 mapped who is in the ecosystem. This step asks a sharper question: of all those actors, who actually touches each condition that sustains a component, and how. Where many actors converge on one condition, influence concentrates. Where a condition has almost no one attending to it, the gap is the finding.</p>
+        <p>The network report holds that reading. It traces the ties between actors and the conditions they affect, so the structure of influence across the ecosystem becomes something you can look at directly rather than infer.</p>
+      </div>
+    </section>
 
+    <!-- ASSETS -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">Assets</div>
+        <h2>What we made</h2>
+      </div>
+      <div class="asset-block">
+        <h3>The network report</h3>
+        <p class="lead">The interactive reading of who touches each condition: actors, the ties to the conditions they affect, and where influence concentrates or thins out. Best viewed full screen.</p>
+        <div class="embed-frame">
+          <iframe src="../assets/activity-06/TNN_Network_Report.html" title="Activity 6 network report" loading="lazy"></iframe>
+          <div class="embed-actions">
+            <span class="label">Get the asset</span>
+            <a href="../assets/activity-06/TNN_Network_Report.html" target="_blank" rel="noopener">Open full page ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRIES FORWARD -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">What carries forward</div>
+        <h2>Into Activity 7</h2>
+      </div>
+      <div class="carries">
+        <p><strong>Activity 7 reads the map for openings.</strong> Activity 6 showed who touches each condition and where influence concentrates or thins out. Activity 7 looks across that for the leverage points: the recurring patterns, the adjacencies, and the places where a small move could matter.</p>
+        <p><strong>Phase 4 begins here.</strong> The ecosystem is now visible. What changes next is the question, from seeing the system to deciding where to act within it.</p>
+      </div>
+    </section>
+
+    <!-- SEQUENTIAL NAV -->
     <nav class="seq-nav" aria-label="Activity navigation">
       <a class="prev" href="05-ecosystem.html">
         <div class="dir">← Previous</div>
@@ -209,8 +234,8 @@
         <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
       </div>
       <div class="meta">
-        Activity 6 · upcoming<br>
-        Last updated May 29, 2026
+        Activity 6 · network report<br>
+        Last updated June 18, 2026
       </div>
     </div>
   </footer>
