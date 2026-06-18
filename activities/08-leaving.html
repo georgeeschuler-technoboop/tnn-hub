@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Activity 8 · What are we leaving with? — TNN 2026</title>
-  <meta name="description" content="Activity 8 of the TNN 2026 retreat roadmap. What are we leaving with? (Upcoming.)" />
+  <meta name="description" content="Activity 8 of the TNN 2026 retreat roadmap. The Thursday closing: the consolidated synthesis, recommendations, and commitments the cohort is leaving with." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../apple-touch-icon.png" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Activity 8 · What are we leaving with? — TNN 2026" />
+  <meta property="og:description" content="The Thursday closing: consolidated synthesis, recommendations, and commitments." />
   <meta property="og:image" content="../og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,45 +34,32 @@
     .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 700px; line-height: 1.55; }
     .act-header .adds strong { font-style: normal; font-weight: 500; color: var(--c8); }
 
-    .upcoming-panel {
-      padding: 3rem 2.5rem;
-      background: var(--card2);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      text-align: center;
-      max-width: 760px;
-      margin: 2rem auto 4rem;
-    }
-    .upcoming-panel .icon-circle {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--c8);
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--c8);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-    }
-    .upcoming-panel h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
-    .upcoming-panel p {
-      color: var(--ink-soft);
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .upcoming-panel p:last-child { margin-bottom: 0; }
-    .upcoming-panel strong { color: var(--ink); font-weight: 500; }
+    .act-section { margin-bottom: 4rem; }
+    .act-section-head { margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+    .act-section-head .kicker { margin-bottom: 0.4rem; }
+    .act-section-head h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.5rem; color: var(--ink); line-height: 1.1; }
+
+    .narrative { max-width: 760px; }
+    .narrative p { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.25rem; font-size: 1rem; }
+    .narrative p:last-child { margin-bottom: 0; }
+    .narrative strong { color: var(--ink); font-weight: 500; }
+
+    .asset-block { margin-bottom: 2.5rem; }
+    .asset-block h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.4rem; }
+    .asset-block .lead { color: var(--ink-soft); line-height: 1.6; margin-bottom: 1rem; max-width: 760px; }
+
+    .embed-frame { width: 100%; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--card); margin: 1rem 0 1.5rem; }
+    .embed-frame iframe { width: 100%; height: 760px; border: 0; display: block; }
+    .embed-actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; padding: 0.85rem 1.1rem; background: var(--card2); border-top: 1px solid var(--line); font-size: 0.85rem; }
+    .embed-actions .label { color: var(--ink-muted); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; margin-right: 0.4rem; }
+    .embed-actions a { text-decoration: none; color: var(--ink); border: 1px solid var(--line2); padding: 0.35rem 0.7rem; border-radius: 5px; font-size: 0.8rem; transition: background 180ms ease; }
+    .embed-actions a:hover { background: var(--card); }
+
+    .carries { padding: 2rem 2.25rem; background: var(--card2); border: 1px solid var(--line); border-left: 4px solid var(--amber); border-radius: 0 8px 8px 0; max-width: 900px; }
+    .carries h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .carries p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 0.85rem; }
+    .carries p:last-child { margin-bottom: 0; }
+    .carries strong { color: var(--ink); font-weight: 500; }
 
     .seq-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 4rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
     .seq-nav a { padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); transition: border-color 180ms ease, transform 180ms ease; }
@@ -129,7 +117,7 @@
             <a class="crumb-node" data-c="1" data-state="complete" href="01-neighborhood.html">
               <span class="dot">1</span>
             </a>
-            <a class="crumb-node" data-c="2" data-state="upcoming" href="02-care.html">
+            <a class="crumb-node" data-c="2" data-state="complete" href="02-care.html">
               <span class="dot">2</span>
             </a>
           </div>
@@ -137,10 +125,10 @@
         <div class="crumb-phase" data-phase="2">
           <div class="crumb-phase-label">Phase 2 · Systems</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="3" data-state="upcoming" href="03-alive.html">
+            <a class="crumb-node" data-c="3" data-state="complete" href="03-alive.html">
               <span class="dot">3</span>
             </a>
-            <a class="crumb-node" data-c="4" data-state="upcoming" href="04-undermines.html">
+            <a class="crumb-node" data-c="4" data-state="complete" href="04-undermines.html">
               <span class="dot">4</span>
             </a>
           </div>
@@ -148,10 +136,10 @@
         <div class="crumb-phase" data-phase="3">
           <div class="crumb-phase-label">Phase 3 · Ecosystem</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="5" data-state="upcoming" href="05-ecosystem.html">
+            <a class="crumb-node" data-c="5" data-state="complete" href="05-ecosystem.html">
               <span class="dot">5</span>
             </a>
-            <a class="crumb-node" data-c="6" data-state="upcoming" href="06-touches.html">
+            <a class="crumb-node" data-c="6" data-state="complete" href="06-touches.html">
               <span class="dot">6</span>
             </a>
           </div>
@@ -159,7 +147,7 @@
         <div class="crumb-phase active" data-phase="4">
           <div class="crumb-phase-label">Phase 4 · Integration</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="7" data-state="upcoming" href="07-leverage.html">
+            <a class="crumb-node" data-c="7" data-state="complete" href="07-leverage.html">
               <span class="dot">7</span>
             </a>
             <a class="crumb-node" data-c="8" data-state="current" href="08-leaving.html">
@@ -176,20 +164,100 @@
     <header class="act-header">
       <div class="meta-row">
         <span class="act-phase-tag"><span class="num">8</span>Activity 8 · Phase 4 · Integration and orientation</span>
-        <span class="status upcoming"><span class="dot"></span>Upcoming</span>
-        <span class="act-date">Scheduled for the retreat</span>
+        <span class="status complete"><span class="dot"></span>Complete</span>
+        <span class="act-date">Thursday closing · Synthesis complete</span>
       </div>
       <h1>What are we leaving with?</h1>
       <p class="adds"><strong>Adds:</strong> shared orientation, relational closure, and a sense of what continues.</p>
     </header>
 
-    <div class="upcoming-panel">
-      <div class="icon-circle">8</div>
-      <h3>This activity hasn't happened yet</h3>
-      <p>Activity 8 is scheduled for the retreat. When the work is complete and the synthesis is ready, this page will fill in with the assets, artifacts, and a narrative of what came out of the cohort's discussion.</p>
-      <p>Until then, the question and what it's expected to add are above. Everything from earlier activities carries forward into this one.</p>
-    </div>
+    <!-- THE WORK -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">The work</div>
+        <h2>The close</h2>
+      </div>
+      <div class="narrative">
+        <p>Activity 8 is the close. The retreat moved from a single question about neighborhood to a visible ecosystem and the conditions inside it. The final session, held Thursday, asked what the cohort is actually leaving with: what holds, and what continues past the retreat. The leverage-points work planned as Activity 7 was taken up here, inside the closing.</p>
+        <p>The session ran in blocks. A go-around surfaced where each person landed. A discussion worked through what sustains each component and what matters most, in the cohort's own terms. The closing pulled those threads into a consolidated synthesis, with a set of recommendations and a first read on what each member is willing to commit to next.</p>
+        <p>What is here is both the polished synthesis and the working materials behind it. The synthesis is the orientation. The artifacts are the record of how the cohort got there.</p>
+      </div>
+    </section>
 
+    <!-- ASSETS -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">Assets</div>
+        <h2>What we made</h2>
+      </div>
+      <div class="asset-block">
+        <h3>The Thursday synthesis</h3>
+        <p class="lead">The consolidated reading of the closing: where the cohort landed, the recommendations, and what carries forward. Explore it on screen, or take the document.</p>
+        <div class="embed-frame">
+          <iframe src="../assets/Activity-08/tnn-thursday-synthesis-v2.html" title="Thursday closing synthesis" loading="lazy"></iframe>
+          <div class="embed-actions">
+            <span class="label">Get the asset</span>
+            <a href="../assets/Activity-08/tnn-thursday-synthesis-v2.html" target="_blank" rel="noopener">Open full page ↗</a>
+            <a href="../assets/Activity-08/tnn-thursday-synthesis-v2.pdf" download>PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIFACTS -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">Artifacts</div>
+        <h2>The working materials</h2>
+      </div>
+      <p class="narrative" style="margin-bottom: 1.5rem;">
+        The block-by-block syntheses behind the closing, in Markdown. These are the working record for cohort members and conveners.
+      </p>
+      <div class="dl-grid">
+        <a class="dl-card" href="../assets/Activity-08/tnn-thursday-consolidated-synthesis.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Thursday Consolidated Synthesis</div><div class="meta">The closing pulled together</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-thursday-goaround-synthesis.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Thursday Go-Around Synthesis</div><div class="meta">Where each person landed</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-blockc-discussion-synthesis.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Block C Discussion Synthesis</div><div class="meta">The closing discussion</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-blockc-pain-gain-give-synthesis.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Block C · Pain, Gain, Give</div><div class="meta">Synthesis of the exercise</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-closing-product-synthesis.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Closing Product Synthesis</div><div class="meta">What the close produced</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-recommendations-package-spec.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Recommendations Package Spec</div><div class="meta">The recommendations, specified</div></div>
+        </a>
+        <a class="dl-card" href="../assets/Activity-08/tnn-asset-commitment-survey.md" download>
+          <div class="ico">MD</div>
+          <div class="body"><div class="title">Asset Commitment Survey</div><div class="meta">What members will commit to next</div></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- WHAT CONTINUES -->
+    <section class="act-section">
+      <div class="act-section-head">
+        <div class="kicker">What continues</div>
+        <h2>Beyond the retreat</h2>
+      </div>
+      <div class="carries">
+        <p><strong>The roadmap ends here. The network does not.</strong> What the cohort is leaving with is not a finished plan but a shared orientation: a common picture of the neighborhood, its conditions, and the ecosystem around it, and a clearer sense of where the leverage sits.</p>
+        <p>The commitments captured in the closing are the first moves. The recommendations point to what comes after the room empties.</p>
+      </div>
+    </section>
+
+    <!-- SEQUENTIAL NAV -->
     <nav class="seq-nav" aria-label="Activity navigation">
       <a class="prev" href="07-leverage.html">
         <div class="dir">← Previous</div>
@@ -209,8 +277,8 @@
         <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
       </div>
       <div class="meta">
-        Activity 8 · upcoming<br>
-        Last updated May 29, 2026
+        Activity 8 · Thursday closing synthesis<br>
+        Last updated June 18, 2026
       </div>
     </div>
   </footer>

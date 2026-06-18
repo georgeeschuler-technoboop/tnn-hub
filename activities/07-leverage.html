@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Activity 7 · Where are the leverage points? — TNN 2026</title>
-  <meta name="description" content="Activity 7 of the TNN 2026 retreat roadmap. Where are the leverage points? (Upcoming.)" />
+  <meta name="description" content="Activity 7 of the TNN 2026 retreat roadmap. Taken up inside the Thursday closing. The output lives on the Activity 8 page." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../apple-touch-icon.png" />
@@ -33,45 +33,12 @@
     .act-header .adds { font-family: 'IBM Plex Serif', serif; font-style: italic; font-size: 1.15rem; color: var(--ink-soft); max-width: 700px; line-height: 1.55; }
     .act-header .adds strong { font-style: normal; font-weight: 500; color: var(--c7); }
 
-    .upcoming-panel {
-      padding: 3rem 2.5rem;
-      background: var(--card2);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      text-align: center;
-      max-width: 760px;
-      margin: 2rem auto 4rem;
-    }
-    .upcoming-panel .icon-circle {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--c7);
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      color: var(--c7);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-    }
-    .upcoming-panel h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 1.4rem;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-    }
-    .upcoming-panel p {
-      color: var(--ink-soft);
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .upcoming-panel p:last-child { margin-bottom: 0; }
-    .upcoming-panel strong { color: var(--ink); font-weight: 500; }
+    .combined-panel { padding: 3rem 2.5rem; background: var(--card2); border: 1px solid var(--line); border-radius: 12px; text-align: center; max-width: 760px; margin: 2rem auto 4rem; }
+    .combined-panel .icon-circle { min-width: 64px; height: 64px; padding: 0 1rem; border-radius: 32px; background: var(--card); border: 2px solid var(--c7); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; color: var(--c7); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; }
+    .combined-panel h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: 1.4rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .combined-panel p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 1rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .combined-panel p:last-child { margin-bottom: 1.5rem; }
+    .combined-panel strong { color: var(--ink); font-weight: 500; }
 
     .seq-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 4rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
     .seq-nav a { padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); transition: border-color 180ms ease, transform 180ms ease; }
@@ -129,7 +96,7 @@
             <a class="crumb-node" data-c="1" data-state="complete" href="01-neighborhood.html">
               <span class="dot">1</span>
             </a>
-            <a class="crumb-node" data-c="2" data-state="upcoming" href="02-care.html">
+            <a class="crumb-node" data-c="2" data-state="complete" href="02-care.html">
               <span class="dot">2</span>
             </a>
           </div>
@@ -137,10 +104,10 @@
         <div class="crumb-phase" data-phase="2">
           <div class="crumb-phase-label">Phase 2 · Systems</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="3" data-state="upcoming" href="03-alive.html">
+            <a class="crumb-node" data-c="3" data-state="complete" href="03-alive.html">
               <span class="dot">3</span>
             </a>
-            <a class="crumb-node" data-c="4" data-state="upcoming" href="04-undermines.html">
+            <a class="crumb-node" data-c="4" data-state="complete" href="04-undermines.html">
               <span class="dot">4</span>
             </a>
           </div>
@@ -148,10 +115,10 @@
         <div class="crumb-phase" data-phase="3">
           <div class="crumb-phase-label">Phase 3 · Ecosystem</div>
           <div class="crumb-nodes">
-            <a class="crumb-node" data-c="5" data-state="upcoming" href="05-ecosystem.html">
+            <a class="crumb-node" data-c="5" data-state="complete" href="05-ecosystem.html">
               <span class="dot">5</span>
             </a>
-            <a class="crumb-node" data-c="6" data-state="upcoming" href="06-touches.html">
+            <a class="crumb-node" data-c="6" data-state="complete" href="06-touches.html">
               <span class="dot">6</span>
             </a>
           </div>
@@ -162,7 +129,7 @@
             <a class="crumb-node" data-c="7" data-state="current" href="07-leverage.html">
               <span class="dot">7</span><span class="label">You are here</span>
             </a>
-            <a class="crumb-node" data-c="8" data-state="upcoming" href="08-leaving.html">
+            <a class="crumb-node" data-c="8" data-state="complete" href="08-leaving.html">
               <span class="dot">8</span>
             </a>
           </div>
@@ -176,18 +143,19 @@
     <header class="act-header">
       <div class="meta-row">
         <span class="act-phase-tag"><span class="num">7</span>Activity 7 · Phase 4 · Integration and orientation</span>
-        <span class="status upcoming"><span class="dot"></span>Upcoming</span>
-        <span class="act-date">Scheduled for the retreat</span>
+        <span class="status complete"><span class="dot"></span>Complete</span>
+        <span class="act-date">Taken up inside the Thursday closing</span>
       </div>
       <h1>Where are the leverage points?</h1>
       <p class="adds"><strong>Adds:</strong> the recurring patterns, adjacencies, and openings worth continuing.</p>
     </header>
 
-    <div class="upcoming-panel">
-      <div class="icon-circle">7</div>
-      <h3>This activity hasn't happened yet</h3>
-      <p>Activity 7 is scheduled for the retreat. When the work is complete and the synthesis is ready, this page will fill in with the assets, artifacts, and a narrative of what came out of the cohort's discussion.</p>
-      <p>Until then, the question and what it's expected to add are above. Everything from earlier activities carries forward into this one.</p>
+    <div class="combined-panel">
+      <div class="icon-circle">7 → 8</div>
+      <h3>Taken up in the Thursday closing</h3>
+      <p>The leverage-points work was not run on its own. The question of where the openings sit was carried into the Thursday closing, where the cohort worked it through alongside what they are leaving with.</p>
+      <p>Its output lives in the closing synthesis, with the recommendations and commitments, on the Activity 8 page.</p>
+      <a class="btn btn-amber" href="08-leaving.html">Open the closing on Activity 8 →</a>
     </div>
 
     <nav class="seq-nav" aria-label="Activity navigation">
@@ -209,8 +177,8 @@
         <div class="brand-text-block">Connecting for Change<br>The Neighborhoods Network · 2026</div>
       </div>
       <div class="meta">
-        Activity 7 · upcoming<br>
-        Last updated May 29, 2026
+        Activity 7 · folded into the Thursday closing<br>
+        Last updated June 18, 2026
       </div>
     </div>
   </footer>
